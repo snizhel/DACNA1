@@ -1,0 +1,31 @@
+﻿@model QuanLyPhongKham3.Models.MedicineType
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Xóa</h2>
+
+<h3>Bạn có chắc muốn xóa loại thuốc này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Tên loại thuốc")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại danh sách các loại thuốc", "Index")
+        </div>
+    }
+</div>

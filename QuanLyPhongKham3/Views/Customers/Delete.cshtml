@@ -1,0 +1,72 @@
+﻿@model QuanLyPhongKham3.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Xóa</h2>
+
+<h3>Bạn có chắc muốn xóa bệnh nhân này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Họ và tên")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.Label("Ngày sinh")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.Label("Địa chỉ cư trú")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.Label("Số điện thoại ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.Label("Giới tính ")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input style="margin-left:12%" type="submit" value="Xóa" class="btn btn-default" /> 
+            <br>
+            @Html.ActionLink("Quay lại danh sách bênh nhân", "Index")
+        </div>
+    }
+</div>

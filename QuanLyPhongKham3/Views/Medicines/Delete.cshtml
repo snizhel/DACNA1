@@ -1,0 +1,72 @@
+﻿@model QuanLyPhongKham3.Models.Medicine
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+
+<h3>Bạn có chắc muốn xóa thuốc này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Tên thuốc")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.Label("Đơn vị tính")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unit)
+        </dd>
+
+        <dt>
+            @Html.Label("Số lượng")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Count)
+        </dd>
+
+        <dt>
+            @Html.Label("Giá thu vào")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+
+        <dt>
+            @Html.Label("Giá bán ra")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.Label("Loại thuốc")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicineType.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input style="margin-left:12%" type="submit" value="Xóa" class="btn btn-default" /> 
+            <br>
+            @Html.ActionLink("Quay lại danh sách thuốc", "Index")
+        </div>
+    }
+</div>

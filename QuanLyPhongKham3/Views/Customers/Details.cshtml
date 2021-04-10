@@ -1,0 +1,73 @@
+﻿@model QuanLyPhongKham3.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Thông tin bệnh nhân</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("Mã bệnh nhân")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+
+        <dt>
+            @Html.Label("Họ và tên")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.Label("Ngày sinh")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.Label("Địa chỉ cư trú")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.Label("Số điện thoại")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.Label("Giới tính")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Quay lại danh sách bệnh nhân", "Index")
+</p>
