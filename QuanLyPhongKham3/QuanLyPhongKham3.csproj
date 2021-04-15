@@ -175,6 +175,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedicinesController.cs" />
     <Compile Include="Controllers\MedicineTypesController.cs" />
+    <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,6 +235,17 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Image\brackground_6.jpg" />
+    <Content Include="Content\Image\gallery_01.jpg" />
+    <Content Include="Content\Image\gallery_02.jpg" />
+    <Content Include="Content\Image\gallery_03.jpg" />
+    <Content Include="Content\Image\gallery_04.jpg" />
+    <Content Include="Content\Image\dent.jpg" />
+    <Content Include="Content\Image\team-memb1.jpg" />
+    <Content Include="Content\Image\team-memb2.jpg" />
+    <Content Include="Content\Image\team-memb3.jpg" />
+    <Content Include="Content\Image\team-memb4.jpg" />
+    <Content Include="Content\Image\why.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -317,6 +329,11 @@
     <Content Include="Views\Medicines\Details.cshtml" />
     <Content Include="Views\Medicines\Edit.cshtml" />
     <Content Include="Views\Medicines\Index.cshtml" />
+    <Content Include="Views\Staffs\Create.cshtml" />
+    <Content Include="Views\Staffs\Delete.cshtml" />
+    <Content Include="Views\Staffs\Details.cshtml" />
+    <Content Include="Views\Staffs\Edit.cshtml" />
+    <Content Include="Views\Staffs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
