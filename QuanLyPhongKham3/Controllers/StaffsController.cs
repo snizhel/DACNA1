@@ -10,6 +10,7 @@ using QuanLyPhongKham3.Models;
 
 namespace QuanLyPhongKham3.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class StaffsController : Controller
     {
         private QLPKEntities db = new QLPKEntities();

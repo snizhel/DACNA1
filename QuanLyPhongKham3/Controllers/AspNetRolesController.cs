@@ -10,108 +10,108 @@ using QuanLyPhongKham3.Models;
 
 namespace QuanLyPhongKham3.Controllers
 {
-    [Authorize(Roles = "MedicalStaff")]
-    public class MedicineTypesController : Controller
+    [Authorize(Roles ="Admin")]
+    public class AspNetRolesController : Controller
     {
         private QLPKEntities db = new QLPKEntities();
 
-        // GET: MedicineTypes
+        // GET: AspNetRoles
         public ActionResult Index()
         {
-            return View(db.MedicineType.ToList());
+            return View(db.AspNetRoles.ToList());
         }
 
-        // GET: MedicineTypes/Details/5
-        public ActionResult Details(int? id)
+        // GET: AspNetRoles/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MedicineType medicineType = db.MedicineType.Find(id);
-            if (medicineType == null)
+            AspNetRoles aspNetRoles = db.AspNetRoles.Find(id);
+            if (aspNetRoles == null)
             {
                 return HttpNotFound();
             }
-            return View(medicineType);
+            return View(aspNetRoles);
         }
 
-        // GET: MedicineTypes/Create
+        // GET: AspNetRoles/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: MedicineTypes/Create
+        // POST: AspNetRoles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] MedicineType medicineType)
+        public ActionResult Create([Bind(Include = "Id,Name")] AspNetRoles aspNetRoles)
         {
             if (ModelState.IsValid)
             {
-                db.MedicineType.Add(medicineType);
+                db.AspNetRoles.Add(aspNetRoles);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(medicineType);
+            return View(aspNetRoles);
         }
 
-        // GET: MedicineTypes/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: AspNetRoles/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MedicineType medicineType = db.MedicineType.Find(id);
-            if (medicineType == null)
+            AspNetRoles aspNetRoles = db.AspNetRoles.Find(id);
+            if (aspNetRoles == null)
             {
                 return HttpNotFound();
             }
-            return View(medicineType);
+            return View(aspNetRoles);
         }
 
-        // POST: MedicineTypes/Edit/5
+        // POST: AspNetRoles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] MedicineType medicineType)
+        public ActionResult Edit([Bind(Include = "Id,Name")] AspNetRoles aspNetRoles)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(medicineType).State = EntityState.Modified;
+                db.Entry(aspNetRoles).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(medicineType);
+            return View(aspNetRoles);
         }
 
-        // GET: MedicineTypes/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: AspNetRoles/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MedicineType medicineType = db.MedicineType.Find(id);
-            if (medicineType == null)
+            AspNetRoles aspNetRoles = db.AspNetRoles.Find(id);
+            if (aspNetRoles == null)
             {
                 return HttpNotFound();
             }
-            return View(medicineType);
+            return View(aspNetRoles);
         }
 
-        // POST: MedicineTypes/Delete/5
+        // POST: AspNetRoles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            MedicineType medicineType = db.MedicineType.Find(id);
-            db.MedicineType.Remove(medicineType);
+            AspNetRoles aspNetRoles = db.AspNetRoles.Find(id);
+            db.AspNetRoles.Remove(aspNetRoles);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

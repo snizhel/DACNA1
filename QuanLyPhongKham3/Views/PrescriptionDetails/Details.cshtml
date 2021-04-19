@@ -1,0 +1,58 @@
+﻿@model QuanLyPhongKham3.Models.PrescriptionDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PrescriptionDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Count)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Count)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dosage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dosage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Symptom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Symptom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Using)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Using)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medicine.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medicine.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDPrescription }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

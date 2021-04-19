@@ -10,108 +10,112 @@ using QuanLyPhongKham3.Models;
 
 namespace QuanLyPhongKham3.Controllers
 {
-    [Authorize(Roles = "MedicalStaff")]
-    public class MedicineTypesController : Controller
+    public class PrescriptionDetailsController : Controller
     {
         private QLPKEntities db = new QLPKEntities();
 
-        // GET: MedicineTypes
+        // GET: PrescriptionDetails
         public ActionResult Index()
         {
-            return View(db.MedicineType.ToList());
+            var prescriptionDetails = db.PrescriptionDetails.Include(p => p.Medicine);
+            return View(prescriptionDetails.ToList());
         }
 
-        // GET: MedicineTypes/Details/5
+        // GET: PrescriptionDetails/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MedicineType medicineType = db.MedicineType.Find(id);
-            if (medicineType == null)
+            PrescriptionDetails prescriptionDetails = db.PrescriptionDetails.Find(id);
+            if (prescriptionDetails == null)
             {
                 return HttpNotFound();
             }
-            return View(medicineType);
+            return View(prescriptionDetails);
         }
 
-        // GET: MedicineTypes/Create
+        // GET: PrescriptionDetails/Create
         public ActionResult Create()
         {
+            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name");
             return View();
         }
 
-        // POST: MedicineTypes/Create
+        // POST: PrescriptionDetails/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] MedicineType medicineType)
+        public ActionResult Create([Bind(Include = "IDPrescription,IDMedicine,Count,Dosage,Symptom,Using")] PrescriptionDetails prescriptionDetails)
         {
             if (ModelState.IsValid)
             {
-                db.MedicineType.Add(medicineType);
+                db.PrescriptionDetails.Add(prescriptionDetails);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(medicineType);
+            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name", prescriptionDetails.IDMedicine);
+            return View(prescriptionDetails);
         }
 
-        // GET: MedicineTypes/Edit/5
+        // GET: PrescriptionDetails/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MedicineType medicineType = db.MedicineType.Find(id);
-            if (medicineType == null)
+            PrescriptionDetails prescriptionDetails = db.PrescriptionDetails.Find(id);
+            if (prescriptionDetails == null)
             {
                 return HttpNotFound();
             }
-            return View(medicineType);
+            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name", prescriptionDetails.IDMedicine);
+            return View(prescriptionDetails);
         }
 
-        // POST: MedicineTypes/Edit/5
+        // POST: PrescriptionDetails/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] MedicineType medicineType)
+        public ActionResult Edit([Bind(Include = "IDPrescription,IDMedicine,Count,Dosage,Symptom,Using")] PrescriptionDetails prescriptionDetails)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(medicineType).State = EntityState.Modified;
+                db.Entry(prescriptionDetails).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(medicineType);
+            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name", prescriptionDetails.IDMedicine);
+            return View(prescriptionDetails);
         }
 
-        // GET: MedicineTypes/Delete/5
+        // GET: PrescriptionDetails/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MedicineType medicineType = db.MedicineType.Find(id);
-            if (medicineType == null)
+            PrescriptionDetails prescriptionDetails = db.PrescriptionDetails.Find(id);
+            if (prescriptionDetails == null)
             {
                 return HttpNotFound();
             }
-            return View(medicineType);
+            return View(prescriptionDetails);
         }
 
-        // POST: MedicineTypes/Delete/5
+        // POST: PrescriptionDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MedicineType medicineType = db.MedicineType.Find(id);
-            db.MedicineType.Remove(medicineType);
+            PrescriptionDetails prescriptionDetails = db.PrescriptionDetails.Find(id);
+            db.PrescriptionDetails.Remove(prescriptionDetails);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

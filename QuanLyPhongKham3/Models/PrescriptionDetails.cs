@@ -26,6 +26,7 @@ namespace QuanLyPhongKham3.Models
         public string Dosage { get; set; }
         public string Symptom { get; set; }
         public string Using { get; set; }
+
     
         public virtual Medicine Medicine { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

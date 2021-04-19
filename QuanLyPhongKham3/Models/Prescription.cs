@@ -22,7 +22,8 @@ namespace QuanLyPhongKham3.Models
         public string Status { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual PrescriptionDetails PrescriptionDetails { get; set; }
+        public virtual ICollection<PrescriptionDetails> PrescriptionDetails { get; set; }
+        
         public virtual Staff Staff { get; set; }
     }
 }

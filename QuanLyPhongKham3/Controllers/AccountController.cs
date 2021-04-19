@@ -17,7 +17,7 @@ namespace QuanLyPhongKham3.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private QLPKEntities db = new QLPKEntities();
         public AccountController()
         {
         }
@@ -155,6 +155,15 @@ namespace QuanLyPhongKham3.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    Staff staff = new Staff
+                    {
+                        ID = user.Id
+                    };
+                    
+                    db.Staff.Add(staff);
+                    db.SaveChanges();
+                    //Gan vai tro Customer cho khach hang
+                    UserManager.AddToRole(user.Id, "Employee");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
