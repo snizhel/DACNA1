@@ -30,6 +30,5 @@ namespace QuanLyPhongKham3.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Prescription> Prescription { get; set; }
-        public string UserId { get; internal set; }
     }
 }

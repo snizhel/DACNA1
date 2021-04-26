@@ -18,12 +18,15 @@ namespace QuanLyPhongKham3.Models
         public string IdStaff { get; set; }
         public int IDCustomer { get; set; }
         public Nullable<System.DateTime> DateOfCreate { get; set; }
-        public int IDPrescriptionDetails { get; set; }
+        public int IDMedicine { get; set; }
+        public int Count { get; set; }
+        public string Dosage { get; set; }
+        public string Symptom { get; set; }
+        public string Using { get; set; }
         public string Status { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual ICollection<PrescriptionDetails> PrescriptionDetails { get; set; }
-        
+        public virtual Medicine Medicine { get; set; }
         public virtual Staff Staff { get; set; }
     }
 }

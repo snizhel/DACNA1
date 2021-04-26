@@ -17,7 +17,7 @@ namespace QuanLyPhongKham3.Controllers
         // GET: Prescriptions
         public ActionResult Index()
         {
-            var prescription = db.Prescription.Include(p => p.Customer).Include(p => p.PrescriptionDetails).Include(p => p.Staff);
+            var prescription = db.Prescription.Include(p => p.Customer).Include(p => p.Medicine).Include(p => p.Staff);
             return View(prescription.ToList());
         }
 
@@ -40,7 +40,7 @@ namespace QuanLyPhongKham3.Controllers
         public ActionResult Create()
         {
             ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name");
-            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage");
+            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name");
             ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name");
             return View();
         }
@@ -50,7 +50,7 @@ namespace QuanLyPhongKham3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,IdStaff,IDCustomer,DateOfCreate,IDPrescriptionDetails,Status")] Prescription prescription)
+        public ActionResult Create([Bind(Include = "ID,IdStaff,IDCustomer,DateOfCreate,IDMedicine,Count,Dosage,Symptom,Using,Status")] Prescription prescription)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +60,7 @@ namespace QuanLyPhongKham3.Controllers
             }
 
             ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name", prescription.IDCustomer);
-            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage", prescription.IDPrescriptionDetails);
+            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name", prescription.IDMedicine);
             ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
             return View(prescription);
         }
@@ -78,7 +78,7 @@ namespace QuanLyPhongKham3.Controllers
                 return HttpNotFound();
             }
             ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name", prescription.IDCustomer);
-            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage", prescription.IDPrescriptionDetails);
+            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name", prescription.IDMedicine);
             ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
             return View(prescription);
         }
@@ -88,7 +88,7 @@ namespace QuanLyPhongKham3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,IdStaff,IDCustomer,DateOfCreate,IDPrescriptionDetails,Status")] Prescription prescription)
+        public ActionResult Edit([Bind(Include = "ID,IdStaff,IDCustomer,DateOfCreate,IDMedicine,Count,Dosage,Symptom,Using,Status")] Prescription prescription)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace QuanLyPhongKham3.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name", prescription.IDCustomer);
-            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage", prescription.IDPrescriptionDetails);
+            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name", prescription.IDMedicine);
             ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
             return View(prescription);
         }

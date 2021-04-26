@@ -87,20 +87,12 @@
           <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
           <ScalarProperty Name="IDCustomer" ColumnName="IDCustomer" />
           <ScalarProperty Name="DateOfCreate" ColumnName="DateOfCreate" />
-          <ScalarProperty Name="IDPrescriptionDetails" ColumnName="IDPrescriptionDetails" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PrescriptionDetails">
-      <EntityTypeMapping TypeName="QLPKModel.PrescriptionDetails">
-        <MappingFragment StoreEntitySet="PrescriptionDetails">
-          <ScalarProperty Name="IDPrescription" ColumnName="IDPrescription" />
           <ScalarProperty Name="IDMedicine" ColumnName="IDMedicine" />
           <ScalarProperty Name="Count" ColumnName="Count" />
           <ScalarProperty Name="Dosage" ColumnName="Dosage" />
           <ScalarProperty Name="Symptom" ColumnName="Symptom" />
           <ScalarProperty Name="Using" ColumnName="Using" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -176,7 +176,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MedicinesController.cs" />
     <Compile Include="Controllers\MedicineTypesController.cs" />
-    <Compile Include="Controllers\PrescriptionDetailsController.cs" />
     <Compile Include="Controllers\PrescriptionsController.cs" />
     <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -184,51 +183,48 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>Dbcontext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>Dbcontext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>Dbcontext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUsers.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>Dbcontext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>Dbcontext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBContext.Context.cs">
+    <Compile Include="Models\Dbcontext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.Context.tt</DependentUpon>
+      <DependentUpon>Dbcontext.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBContext.cs">
+    <Compile Include="Models\Dbcontext.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>Dbcontext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBContext.Designer.cs">
+    <Compile Include="Models\Dbcontext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBContext.edmx</DependentUpon>
+      <DependentUpon>Dbcontext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Medicine.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>Dbcontext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MedicineType.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>Dbcontext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Prescription.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PrescriptionDetails.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>Dbcontext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Staff.cs">
-      <DependentUpon>DBContext.tt</DependentUpon>
+      <DependentUpon>Dbcontext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -258,24 +254,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DBContext.Context.tt">
+    <Content Include="Models\Dbcontext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBContext.edmx</DependentUpon>
-      <LastGenOutput>DBContext.Context.cs</LastGenOutput>
+      <DependentUpon>Dbcontext.edmx</DependentUpon>
+      <LastGenOutput>Dbcontext.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DBContext.tt">
+    <Content Include="Models\Dbcontext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBContext.edmx</DependentUpon>
-      <LastGenOutput>DBContext.cs</LastGenOutput>
+      <DependentUpon>Dbcontext.edmx</DependentUpon>
+      <LastGenOutput>Dbcontext.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\DBContext.edmx">
+    <EntityDeploy Include="Models\Dbcontext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>Dbcontext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DBContext.edmx.diagram">
-      <DependentUpon>DBContext.edmx</DependentUpon>
+    <Content Include="Models\Dbcontext.edmx.diagram">
+      <DependentUpon>Dbcontext.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -352,11 +348,6 @@
     <Content Include="Views\Prescriptions\Details.cshtml" />
     <Content Include="Views\Prescriptions\Edit.cshtml" />
     <Content Include="Views\Prescriptions\Index.cshtml" />
-    <Content Include="Views\PrescriptionDetails\Create.cshtml" />
-    <Content Include="Views\PrescriptionDetails\Delete.cshtml" />
-    <Content Include="Views\PrescriptionDetails\Details.cshtml" />
-    <Content Include="Views\PrescriptionDetails\Edit.cshtml" />
-    <Content Include="Views\PrescriptionDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
