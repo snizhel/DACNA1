@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -155,7 +156,7 @@ namespace QuanLyPhongKham3.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    Staff staff = new Staff
+                    /* Staff staff = new Staff
                     {
                         ID = user.Id
                     };
@@ -163,7 +164,8 @@ namespace QuanLyPhongKham3.Controllers
                     db.Staff.Add(staff);
                     db.SaveChanges();
                     //Gan vai tro Customer cho khach hang
-                    UserManager.AddToRole(user.Id, "Employee");
+                    UserManager.AddToRole(user.Id, "Staff");
+                    */
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
@@ -180,7 +182,60 @@ namespace QuanLyPhongKham3.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        // GET: /Account/Register
+        [Authorize(Roles = "Admin")]
+        public ActionResult RegisterEmployee()
+        {
+            List<string> type = new List<string> { "Admin", "Doctor", "Staff", "Customer", "MedicalStaff" };
+            ViewBag.type = new SelectList(type, "Staff");
+            ViewBag.roles = new SelectList(db.AspNetRoles.Where(role => !role.Name.Contains("Admin")).ToList(), "Name", "Name", "Employee");
+            return View();
+        }
 
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterEmployee(RegisterStaffViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    //Luu thong tin nhan vien vao table Employee
+                    Staff staff = new Staff
+                    {
+                        Type = model.Type,
+                        ID = user.Id
+                    };
+
+                    db.Staff.Add(staff);
+                    db.SaveChangesAsync();
+                    //Gan vai tro cho nhan vien
+                    UserManager.AddToRole(user.Id, model.Role);
+
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                   
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            List<string> type = new List<string> { "Admin", "Doctor", "Staff", "Customer", "MedicalStaff" };
+            ViewBag.type = new SelectList(type, model.Type);
+            ViewBag.roles = new SelectList(db.AspNetRoles.Where(role => !role.Name.Contains("Admin")).ToList(), "Name", "Name", model.Role);
+            return View(model);
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
