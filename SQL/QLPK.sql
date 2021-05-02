@@ -205,13 +205,14 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 /****** Object:  Table [dbo].[Medicine]    Script Date: 07/04/2021 4:31:06 CH ******/
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Medicine](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [nvarchar](100) NOT NULL,
+	[Name] [nvarchar](100)  NULL,
 	[IDMedicineType] [int] NOT NULL,
 	[Unit] [nvarchar](100) NOT NULL,
 	[Count] [int] NOT NULL,
@@ -249,10 +250,10 @@ CREATE TABLE [dbo].[Prescription](
 	[DateOfCreate] [smalldatetime] NULL,
 	[IDMedicine] [int] NOT NULL,
 	[Count] [int] NOT NULL,
-	[Dosage] [nvarchar](200) NOT NULL,
-	[Symptom] [nvarchar](200) NOT NULL,
-	[Using] [nvarchar](200) NOT NULL,
-	[Status] [nvarchar](100) NOT NULL,
+	[Dosage] [nvarchar](200)  NULL,
+	[Symptom] [nvarchar](200)  NULL,
+	[Using] [nvarchar](200)  NULL,
+	[Status] [nvarchar](100)  NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC

@@ -68,7 +68,7 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
     <Property Name="IDMedicineType" Type="int" Nullable="false" />
     <Property Name="Unit" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Count" Type="int" Nullable="false" />
@@ -92,10 +92,10 @@
     <Property Name="DateOfCreate" Type="smalldatetime" />
     <Property Name="IDMedicine" Type="int" Nullable="false" />
     <Property Name="Count" Type="int" Nullable="false" />
-    <Property Name="Dosage" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="Symptom" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="Using" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="Status" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Dosage" Type="nvarchar" MaxLength="200" />
+    <Property Name="Symptom" Type="nvarchar" MaxLength="200" />
+    <Property Name="Using" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Staff">
     <Key>
@@ -109,7 +109,7 @@
     <Property Name="StartDay" Type="date" />
     <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Medicine__IDMedi__57DD0BE4">
+  <Association Name="FK__Medicine__IDMedi__4959E263">
     <End Role="MedicineType" Type="Self.MedicineType" Multiplicity="1" />
     <End Role="Medicine" Type="Self.Medicine" Multiplicity="*" />
     <ReferentialConstraint>
@@ -121,7 +121,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Prescript__IDCus__3FD07829">
+  <Association Name="FK__Prescript__IDCus__4865BE2A">
     <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
     <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
     <ReferentialConstraint>
@@ -133,7 +133,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Prescript__IDMed__42ACE4D4">
+  <Association Name="FK__Prescript__IDMed__477199F1">
     <End Role="Medicine" Type="Self.Medicine" Multiplicity="1" />
     <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
     <ReferentialConstraint>
@@ -145,7 +145,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Prescript__IdSta__41B8C09B">
+  <Association Name="FK__Prescript__IdSta__4D2A7347">
     <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
     <End Role="Prescription" Type="Self.Prescription" Multiplicity="*" />
     <ReferentialConstraint>
@@ -157,7 +157,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Staff__ID__40C49C62">
+  <Association Name="FK__Staff__ID__4C364F0E">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
     <ReferentialConstraint>
@@ -236,23 +236,23 @@
     <EntitySet Name="MedicineType" EntityType="Self.MedicineType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Medicine__IDMedi__57DD0BE4" Association="Self.FK__Medicine__IDMedi__57DD0BE4">
+    <AssociationSet Name="FK__Medicine__IDMedi__4959E263" Association="Self.FK__Medicine__IDMedi__4959E263">
       <End Role="MedicineType" EntitySet="MedicineType" />
       <End Role="Medicine" EntitySet="Medicine" />
     </AssociationSet>
-    <AssociationSet Name="FK__Prescript__IDCus__3FD07829" Association="Self.FK__Prescript__IDCus__3FD07829">
+    <AssociationSet Name="FK__Prescript__IDCus__4865BE2A" Association="Self.FK__Prescript__IDCus__4865BE2A">
       <End Role="Customer" EntitySet="Customer" />
       <End Role="Prescription" EntitySet="Prescription" />
     </AssociationSet>
-    <AssociationSet Name="FK__Prescript__IDMed__42ACE4D4" Association="Self.FK__Prescript__IDMed__42ACE4D4">
+    <AssociationSet Name="FK__Prescript__IDMed__477199F1" Association="Self.FK__Prescript__IDMed__477199F1">
       <End Role="Medicine" EntitySet="Medicine" />
       <End Role="Prescription" EntitySet="Prescription" />
     </AssociationSet>
-    <AssociationSet Name="FK__Prescript__IdSta__41B8C09B" Association="Self.FK__Prescript__IdSta__41B8C09B">
+    <AssociationSet Name="FK__Prescript__IdSta__4D2A7347" Association="Self.FK__Prescript__IdSta__4D2A7347">
       <End Role="Staff" EntitySet="Staff" />
       <End Role="Prescription" EntitySet="Prescription" />
     </AssociationSet>
-    <AssociationSet Name="FK__Staff__ID__40C49C62" Association="Self.FK__Staff__ID__40C49C62">
+    <AssociationSet Name="FK__Staff__ID__4C364F0E" Association="Self.FK__Staff__ID__4C364F0E">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Staff" EntitySet="Staff" />
     </AssociationSet>
