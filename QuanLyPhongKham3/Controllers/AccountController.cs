@@ -186,9 +186,9 @@ namespace QuanLyPhongKham3.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult RegisterEmployee()
         {
-            List<string> type = new List<string> { "Admin", "Doctor", "Staff", "Customer", "MedicalStaff" };
+            List<string> type = new List<string> {"Doctor", "Staff", "Customer", "MedicalStaff" };
             ViewBag.type = new SelectList(type, "Staff");
-            ViewBag.roles = new SelectList(db.AspNetRoles.Where(role => !role.Name.Contains("Admin")).ToList(), "Name", "Name", "Employee");
+             ViewBag.roles = new SelectList(db.AspNetRoles.Where(role => !role.Name.Contains("Admin")).ToList(),"Name", "Name", "Employee");
             return View();
         }
 
@@ -213,7 +213,7 @@ namespace QuanLyPhongKham3.Controllers
                     };
 
                     db.Staff.Add(staff);
-                    db.SaveChangesAsync();
+                    db.SaveChanges();//do
                     //Gan vai tro cho nhan vien
                     UserManager.AddToRole(user.Id, model.Role);
 
@@ -233,6 +233,7 @@ namespace QuanLyPhongKham3.Controllers
             // If we got this far, something failed, redisplay form
             List<string> type = new List<string> { "Admin", "Doctor", "Staff", "Customer", "MedicalStaff" };
             ViewBag.type = new SelectList(type, model.Type);
+
             ViewBag.roles = new SelectList(db.AspNetRoles.Where(role => !role.Name.Contains("Admin")).ToList(), "Name", "Name", model.Role);
             return View(model);
         }

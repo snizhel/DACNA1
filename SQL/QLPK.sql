@@ -270,11 +270,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Staff](
 	[ID] [nvarchar](128) NOT NULL,
-	[Name] [nvarchar](100) NOT NULL,
-	[DateOfBirth] [date] NOT NULL,
-	[Sex] [nvarchar](100) NOT NULL,
-	[Address] [nvarchar](200) NOT NULL,
-	[StartDay] [date] NOT NULL,
+	[Name] [nvarchar](100)  NULL,
+	[DateOfBirth] [date]  NULL,
+	[Sex] [nvarchar](100)  NULL,
+	[Address] [nvarchar](200)  NULL,
+	[StartDay] [date]  NULL,
 	[Type] [nvarchar](100) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -284,6 +284,7 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING ON
 GO
+
 /****** Object:  Index [RoleNameIndex]    Script Date: 07/04/2021 4:31:06 CH ******/
 CREATE UNIQUE NONCLUSTERED INDEX [RoleNameIndex] ON [dbo].[AspNetRoles]
 (
@@ -372,7 +373,7 @@ GO
 ALTER TABLE [dbo].[Prescription]  WITH CHECK ADD FOREIGN KEY([IDMedicine])
 REFERENCES [dbo].[Medicine] ([ID])
 GO
-drop table PrescriptionDetails
+drop table Staff
 USE [master]
 GO
 ALTER DATABASE [QLPK] SET  READ_WRITE 

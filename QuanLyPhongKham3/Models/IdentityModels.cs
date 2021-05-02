@@ -29,5 +29,7 @@ namespace QuanLyPhongKham3.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<QuanLyPhongKham3.Models.RegisterStaffViewModel> RegisterStaffViewModels { get; set; }
     }
 }
