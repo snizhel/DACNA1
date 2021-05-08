@@ -111,6 +111,7 @@
                                         <li><a href="@Url.Action("Index","Customers")">Patient</a></li>
                                         <li><a href="@Url.Action("Index","Medicines")">Medicines</a></li>
                                         <li><a href="@Url.Action("Index","MedicineTypes")">Drug List</a></li>
+                                        <li><a href="@Url.Action("RegisterEmployee","Account")">Register Employee</a></li>
                                     </ul>
                                 </li>
 
@@ -135,27 +136,28 @@
                             using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
                             {
                                 @Html.AntiForgeryToken()
-                                <li class="btn-group nav">
+                                <p class="btn-group nav">
                                     <button type="button" class="primary-btn" style="background-color:forestgreen">@User.Identity.Name</button>
-
-                                </li>
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li>
-                                        <a href="javascript:document.getElementById('logoutForm').submit()">
-                                            Log off
-                                            <span class="glyphicon glyphicon-log-out"></span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                    <ul class="dropdown">
+                                        <li>
+                                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                                                Log off
+                                                <span class="glyphicon glyphicon-log-out"></span>
+                                            </a>
+                                        </li>
+                                       
+                                    </ul>
+                                </p>
+                               
                             }
                         }
                         else
                         {
                             <div class="header__btn">
-                               
-                                        <a href="@Url.Action("Login", "Account")"class="primary-btn">
-                                            Login
-                                        </a>
+
+                                <a href="@Url.Action("Login", "Account")" class="primary-btn">
+                                    Login
+                                </a>
                             </div>
                         }
                     </div>

@@ -55,7 +55,8 @@
         <td>
             @Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Thông tin bệnh nhân", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.ID })
+            @Html.ActionLink("Xóa", "Delete", new { id=item.ID }) |
+            @Html.ActionLink("Make prescription", "Create","Prescriptions")
         </td>
     </tr>
 }
