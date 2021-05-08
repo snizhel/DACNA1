@@ -337,11 +337,12 @@
     <Content Include="Views\AspNetRoles\Details.cshtml" />
     <Content Include="Views\AspNetRoles\Edit.cshtml" />
     <Content Include="Views\AspNetRoles\Index.cshtml" />
+    <Content Include="Views\Prescriptions\Create.cshtml" />
+    <Content Include="Views\Prescriptions\Delete.cshtml" />
+    <Content Include="Views\Prescriptions\Details.cshtml" />
+    <Content Include="Views\Prescriptions\Edit.cshtml" />
+    <Content Include="Views\Prescriptions\Index.cshtml" />
     <Content Include="Views\Account\RegisterEmployee.cshtml" />
-    <Content Include="Views\Prescription\Create.cshtml" />
-    <Content Include="Views\Prescription\Delete.cshtml" />
-    <Content Include="Views\Prescription\Details.cshtml" />
-    <Content Include="Views\Prescription\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

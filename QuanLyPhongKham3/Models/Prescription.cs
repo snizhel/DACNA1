@@ -11,12 +11,14 @@ namespace QuanLyPhongKham3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Prescription
     {
         public int ID { get; set; }
         public string IdStaff { get; set; }
         public int IDCustomer { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public Nullable<System.DateTime> DateOfCreate { get; set; }
         public int IDMedicine { get; set; }
         public int Count { get; set; }
