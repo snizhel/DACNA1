@@ -13,14 +13,14 @@ namespace QuanLyPhongKham3.Controllers
     public class PrescriptionsController : Controller
     {
         private QLPKEntities db = new QLPKEntities();
-
+        [Authorize(Roles = "MedicalStaff,Admin")]
         // GET: Prescriptions
         public ActionResult Index()
         {
             var prescription = db.Prescription.Include(p => p.Customer).Include(p => p.Medicine).Include(p => p.Staff);
             return View(prescription.ToList());
         }
-
+        [Authorize(Roles = "MedicalStaff")]
         // GET: Prescriptions/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,7 +35,7 @@ namespace QuanLyPhongKham3.Controllers
             }
             return View(prescription);
         }
-
+        [Authorize(Roles = "Doctor")]
         // GET: Prescriptions/Create
         public ActionResult Create()
         {
@@ -64,7 +64,7 @@ namespace QuanLyPhongKham3.Controllers
             ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
             return View(prescription);
         }
-
+        [Authorize(Roles = "MedicalStaff")]
         // GET: Prescriptions/Edit/5
         public ActionResult Edit(int? id)
         {

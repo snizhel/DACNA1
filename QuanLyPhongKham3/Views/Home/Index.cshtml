@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="~/Content/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+
+    <!-- Custom CSS -->
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -33,231 +36,108 @@
     <script src="~/Content/js/jquery.slicknav.js"></script>
     <script src="~/Content/js/owl.carousel.min.js"></script>
     <script src="~/Content/js/main.js"></script>
-  
+    <script src="~/Content/js/all.js"></script>
+    <script src="~/Content/js/custom.js"></script>
+    <style>
+        .typewrite {
+            font-size: 70px;
+            width: 100%;
+            text-shadow: 4px 3px 0 rgb(0 0 0 / 0%);
+            letter-spacing: -1px;
+            font-weight: 400;
+        }
+    </style>
 </head>
-@*<section class="health-care">
-        <div class="container">
-            <div class="row" style="display: flex; flex-wrap: wrap; text-align: center; justify-content: space-between;">
-                <div class="col-md-3 col-sm-6 vd">
-                    <img src="~/Content/Image/gallery_01.jpg" alt="">
-                    <h4>Premium Care</h4>
-                    <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                    <button class="btn btn-info">Readmore <i class="fas fa-arrow-right"></i></button>
-                </div>
-                <div class="col-md-3 col-sm-6 vd">
-                    <img src="~/Content/Image/gallery_02.jpg" alt="">
-                    <h4>Powerful Medicine</h4>
-                    <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                    <button class="btn btn-info">Readmore <i class="fas fa-arrow-right"></i></button>
-                </div>
-                <div class="col-md-3 col-sm-6 vd">
-                    <img src="~/Content/Image/gallery_03.jpg" alt="">
-                    <h4>Quality Equipments</h4>
-                    <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                    <button class="btn btn-info">Readmore <i class="fas fa-arrow-right"></i></button>
-                </div>
-                <div class="col-md-3 col-sm-6 vd">
-                    <img src="~/Content/Image/gallery_04.jpg" alt="">
-                    <h4>Experiance Docors</h4>
-                    <p>Ut wisi enim ad minim veniam, quis laore nostrud exerci tation ulm hedi corper turet suscipit lobortis</p>
-                    <button class="btn btn-info">Readmore <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
 
-
-        </div>
-    </section>*@
-
-
-
-<!-- ################# AppointmentStarts Here#######################--->
-<!--<section style="background-image: url(/Content/Image/brackground_6.jpg); width:100%; height:100%;justify-content: space-evenly;">
-    <div class="container" >
-        <div class="title-another row" style="display:unset;font-style:italic;">
-            <h4>Chúng tôi chuyên nghiệp</h4>
-            <h2>Quản lý chuyên nghiệp</h2>
-            <h3>Và dịch vụ chất lượng</h3>
-            <div class="btn-ro">
-                <button class="btn btn-default">Contact Us</button>
-            </div>
-
-        </div>
-    </div>
-</section>-->
-<!-- ################# Our Team Starts Here#######################--->
-<!--<section class="our-team">
-    <div class="container">
-        <div class="inner-title row">
-            <h2>Our Team</h2>
-            <p>Take a look at our Team</p>
-        </div>
-        <div class="row team-row">
-            <div class="col-md-3 col-sm-6">
-                <div class="single-usr">
-                    <img src="assets/images/team/team-memb1.jpg" alt="">
-                    <div class="det-o">
-                        <h4>David Kanuel</h4>
-                        <i>Facial Surgan</i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="single-usr">
-                    <img src="assets/images/team/team-memb2.jpg" alt="">
-                    <div class="det-o">
-                        <h4>David Kanuel</h4>
-                        <i>Facial Surgan</i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="single-usr">
-                    <img src="assets/images/team/team-memb3.jpg" alt="">
-                    <div class="det-o">
-                        <h4>David Kanuel</h4>
-                        <i>Facial Surgan</i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="single-usr">
-                    <img src="assets/images/team/team-memb4.jpg" alt="">
-                    <div class="det-o">
-                        <h4>David Kanuel</h4>
-                        <i>Facial Surgan</i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</section>-->
-<!--  ************************* Blog Starts Here ************************** -->
-<!--<div class="blog">
-    <div class="row session-title">
-        <h2>Latest Blog</h2>
-        <p>
-            We can talk for a long time about advantages of our Dental clinic before other medical treatment facilities.
-            But you can read the following facts in order to make sure of all pluses of our clinic:
-        </p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <div class="blog-singe no-margin row">
-                    <div class="col-sm-5 blog-img-tab">
-                        <img src="assets/images/blog/blog_01.jpg" alt="">
-                    </div>
-                    <div class="col-sm-7 blog-content-tab">
-                        <h2>Why Primary treatment is important ?</h2>
-                        <p><i class="fas fa-user"><small>Admin</small></i>  <i class="fas fa-eye"><small>(12)</small></i>  <i class="fas fa-comments"><small>(12)</small></i></p>
-                        <p class="blog-desic">Lorem Ipsum, type lorem then press the shortcut. The default keyboard shortcut is the same keyboard shortcut is the </p>
-                        <a href="blog_single.html">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="blog-singe no-margin row">
-                    <div class="col-sm-5 blog-img-tab">
-                        <img src="assets/images/blog/blog_02.jpg" alt="">
-                    </div>
-                    <div class="col-sm-7 blog-content-tab">
-                        <h2>Why Primary treatment is important ?</h2>
-                        <p><i class="fas fa-user"><small>Admin</small></i>  <i class="fas fa-eye"><small>(12)</small></i>  <i class="fas fa-comments"><small>(12)</small></i></p>
-                        <p class="blog-desic">Lorem Ipsum, type lorem then press the shortcut. The default keyboard shortcut is the same keyboard shortcut is the </p>
-                        <a href="blog_single.html">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
 <section style="background-image: url(/img/hero.jpg);
-        height: 60%;
+        height: 250px;
         width: 90%;margin-left:5%;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: top center;
         padding-top: 100px;
-        display:block">
+        display:block";
+         >
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
                 <div class="hero__text">
-                    <h2>Take the world's best quality Treadment</h2>
-                    <a href="#" class="primary-btn normal-btn">Contact us</a>
+                    <h2>
+                        <a href="#" class="typewrite" data-period="2000" data-type='[ "Welcome to Aesthetic", "We Care Your Health", "We are Expert!" ]'> <span class="wrap"></span> </a>
+                       
+                    </h2>
+                    
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 <section class="consultation">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="consultation__form">
-                    <div class="section-title">
-                        <span>REQUEST FOR YOUR</span>
-                        <h2>Consultation</h2>
-                    </div>
-                    <form action="#">
-                        <input type="text" placeholder="Name">
-                        <input type="text" placeholder="Email">
-                        <div class="datepicker__item">
-                            <input type="text" placeholder="Date" class="datepicker">
-                            <i class="fa fa-calendar"></i>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="consultation__form">
+                        <div class="section-title">
+                            <span>REQUEST FOR YOUR</span>
+                            <h2>Consultation</h2>
                         </div>
-                        <select>
-                            <option value="">Type of service</option>
-                            <option value="">Advanced equipment</option>
-                            <option value="">Qualified doctors</option>
-                            <option value="">Certified services</option>
-                            <option value="">Emergency care</option>
-                        </select>
-                        <button type="submit" class="site-btn">Book appoitment</button>
-                    </form>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="consultation__text">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="consultation__text__item">
-                                <div class="section-title">
-                                    <span>Welcon to Aesthetic</span>
-                                    <h2>Find Best Doctors With <b>AESTHETIC</b></h2>
-                                </div>
-                                <p>
-                                    30 Years of experience in Cosmetic Surgery.Lorem ipsum dolor sit amet,
-                                    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                                    dolore magna aliqua.
-                                </p>
+                        <form action="#">
+                            <input type="text" placeholder="Name">
+                            <input type="text" placeholder="Email">
+                            <div class="datepicker__item">
+                                <input type="text" placeholder="Date" class="datepicker">
+                                <i class="fa fa-calendar"></i>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div style="background-image: url(/img/consultation-video.jpg);
-                                    background-repeat: no-repeat;
-                                    background-size: cover;
-                                    background-position: top center;
-                                    height: 262px;
-                                    display: -webkit-box;
-                                    box-sizing: border-box;
-                                    -webkit-box-align: center;
-                                    align-items: center;
-                                    -webkit-box-pack: center;
-                                    justify-content: center;
-                                ">
-                                <a href="https://www.youtube.com/watch?v=PXsuI67s2AA" class="play-btn video-popup"><i class="fa fa-play"></i></a>
+                            <select>
+                                <option value="">Select doctor</option>
+                                <option value="">Doctor A</option>
+                                <option value="">Doctor B</option>
+                                <option value="">Doctor C</option>
+                                <option value="">Doctor D</option>
+                            </select>
+                            <button type="submit" class="site-btn">Book appoitment</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="consultation__text">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="consultation__text__item">
+                                    <div class="section-title">
+                                        <span>Welcon to Aesthetic</span>
+                                        <h2>Find Best Doctors With <b>AESTHETIC</b></h2>
+                                    </div>
+                                    <p>
+                                        30 Years of experience in Cosmetic Surgery.Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                        dolore magna aliqua.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div style="background-image: url(/img/consultation-video.jpg);
+                                        background-repeat: no-repeat;
+                                        background-size: cover;
+                                        background-position: top center;
+                                        height: 270px;
+                                        display: -webkit-box;
+                                        box-sizing: border-box;
+                                        -webkit-box-align: center;
+                                        align-items: center;
+                                        -webkit-box-pack: center;
+                                        justify-content: center;
+                                    ">
+                                    <a href="https://www.youtube.com/watch?v=PXsuI67s2AA" class="play-btn video-popup"><i class="fa fa-play"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
 <section class="chooseus spad">
     <div class="container">
         <div class="row">
@@ -315,13 +195,13 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-6">
                 <div class="section-title">
-                    <span>Our services</span>
+                    <span>Special services</span>
                     <h2>Offer for you</h2>
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="services__btn">
-                    <a href="#" class="primary-btn">Contact us</a>
+                    <a href="@Url.Action("Contact","Home")" class="primary-btn">Contact us</a>
                 </div>
             </div>
         </div>
