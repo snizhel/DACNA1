@@ -209,6 +209,7 @@ namespace QuanLyPhongKham3.Controllers
                     Staff staff = new Staff
                     {
                         Type = model.Type,
+                        Name = model.Name,
                         ID = user.Id
                     };
 
