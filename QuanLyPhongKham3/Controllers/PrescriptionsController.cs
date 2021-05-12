@@ -60,7 +60,7 @@ namespace QuanLyPhongKham3.Controllers
             }
 
             ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name", prescription.IDCustomer);
-            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name", prescription.IDMedicine);
+            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name",prescription.IDMedicine);
             ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
             return View(prescription);
         }

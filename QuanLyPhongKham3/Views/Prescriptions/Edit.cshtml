@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Prescription</h4>
         <hr />
@@ -41,48 +41,65 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IDMedicine, "Tên thuốc", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("IDMedicine", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.IDMedicine, "", new { @class = "text-danger" })
-            </div>
+        <div style="padding-left: 50px;padding-right: 30px;padding-top:50px;" class="container">
+            <h2 class="text-center">Đơn thuốc</h2>
+
+            <table class="table table-dark table-striped table-hover tbl_code_with_mark">
+                <tr>
+                    <th>Tên thuốc</th>
+                    <th>Số lượng</th>
+                    <th>Cách dùng</th>
+                    <th>Liều lượng</th>
+                    <th>Option</th>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="col" type="text">
+                            @Html.DropDownList("IDMedicine", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.IDMedicine, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col">
+                            @Html.EditorFor(model => model.Count, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Medicine.Count, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                    <td>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Using, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Using, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Dosage, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Dosage, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+
+                    <td>
+                        <span class="btn btn-sm btn-success btn_row_below_clone">Add</span> |
+                        <span class="btn btn-sm btn-danger btn_row_delete">Delete</span>
+                    </td>
+                </tr>
+
+
+
+            </table>
+            @* <div class="text-center">
+                    <span class="btn btn-sm btn-primary btn_row_add_below_end"> Clone Last Row And Add At End</span>
+                </div>*@
+
+
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Count, "Số lượng", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Count, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Count, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
+
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Dosage, "Liều lượng", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Dosage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Dosage, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Symptom, "Triệu chứng", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Symptom, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Symptom, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Using, "Cách dùng", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Using, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Using, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, "Trạng thái", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Status, "Trạng thái", htmlAttributes: new { @class = "col-md-2 control-label" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
@@ -100,7 +117,50 @@
 <div>
     @Html.ActionLink("Quay lại danh sách toa thuốc", "Index")
 </div>
-
+@**@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
 }
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function ($) {
+        //--->add row at the end > start
+        $(document).on('click', ".btn_row_add_below_end", function (e) {
+            var tableBody = $(document).find('.tbl_code_with_mark').find("tbody");
+            var trLast = tableBody.find("tr:last");
+            var trNew = trLast.clone();
+            trLast.after(trNew);
+        });
+        //--->add row at the end > end
+
+
+        //--->current row > new > start
+        $(document).on('click', ".btn_row_below_new", function (e) {
+            var r = $(this).closest('tr').clone();
+
+            $.each(r.find('td'), function (i1, v1) {
+                //clear all data/value in td/cell
+                $(this).html('');
+            });
+
+            $(this).closest('tr').after(r);
+        });
+        //--->current row > new > end
+
+
+        //--->current row > clone > start
+        $(document).on('click', ".btn_row_below_clone", function (e) {
+            var r = $(this).closest('tr').clone();
+            $(this).closest('tr').after(r);
+        });
+        //--->current row > clone > end
+
+        //--->current row > delete > start
+        $(document).on('click', ".btn_row_delete", function (e) {
+            var r = $(this).closest('tr').remove();
+        });
+        //--->current row > delete > end
+
+    });
+</script>
