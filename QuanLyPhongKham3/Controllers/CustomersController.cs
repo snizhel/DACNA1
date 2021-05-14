@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyPhongKham3.Models;
-
+using PagedList;//Must install
 namespace QuanLyPhongKham3.Controllers
 {
     [Authorize(Roles ="Admin,Doctor,Employee")]
@@ -16,9 +16,44 @@ namespace QuanLyPhongKham3.Controllers
         private QLPKEntities db = new QLPKEntities();
 
         // GET: Customers
-        public ActionResult Index()
+       
+      //  public ActionResult Index()
+      //  {
+//return View(db.Customer.ToList());
+      //  }
+        public ActionResult Index(string searchBy, string search, int? page, string sortBy)
         {
-            return View(db.Customer.ToList());
+            ViewBag.NameSort = String.IsNullOrEmpty(sortBy) ? "Name desc" : "";
+            ViewBag.SexSort = sortBy == "Sex" ? "Sex desc" : "Sex";
+
+            var customers = db.Customer.AsQueryable();
+
+            if (searchBy == "Sex")
+            {
+                customers = customers.Where(x => x.Sex == search || search == null);
+            }
+            else
+            {
+                customers = customers.Where(x => x.Name.StartsWith(search) || search == null);
+            }
+
+            switch (sortBy)
+            {
+                case "Name desc":
+                    customers = customers.OrderByDescending(x => x.Name);
+                    break;
+                case "Sex desc":
+                    customers = customers.OrderByDescending(x => x.Sex);
+                    break;
+                case "Sex":
+                    customers = customers.OrderBy(x => x.Sex);
+                    break;
+                default:
+                    customers = customers.OrderBy(x => x.Name);
+                    break;
+            }
+
+            return View(customers.ToPagedList(page ?? 1, 3));
         }
 
         // GET: Customers/Details/5
@@ -35,6 +70,8 @@ namespace QuanLyPhongKham3.Controllers
             }
             return View(customer);
         }
+
+       
 
         // GET: Customers/Create
         public ActionResult Create()

@@ -106,3 +106,7 @@ C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\roslyn\v
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\roslyn\vbc.rsp
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\roslyn\VBCSCompiler.exe
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\PagedList.dll
+C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\PagedList.Mvc.dll
+C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\PagedList.xml
+C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\PagedList.Mvc.xml
