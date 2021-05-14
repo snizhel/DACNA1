@@ -18,7 +18,16 @@
     }
 
     <p>
-        @Html.ActionLink("Insert Patient", "Create")
+        @if (this.User.IsInRole("Doctor"))
+        {
+           <a style="display:none" href="@Url.Action("Create", "Customers")"></a>
+
+
+        }
+        else
+        {
+            @Html.ActionLink("Insert Patient", "Create")
+        }
     </p>
     <table class="table">
         <tr>
@@ -64,12 +73,28 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
-                    @Html.ActionLink("Make prescription", "Create", "Prescriptions")
-                </td>
+                @if (this.User.IsInRole("Doctor"))
+                {
+            <td>
+
+                <a style="display:none" href="@Url.Action("Edit", "Customers")"></a>
+                <a style="display:none" href="@Url.Action("Details", "Customers")"></a>
+                <a style="display:none" href="@Url.Action("Delete", "Customers")"></a>
+                @Html.ActionLink("Make prescription", "Create", "Prescriptions")
+
+
+            </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+                        
+                    </td>
+                }
+
             </tr>
         }
 
