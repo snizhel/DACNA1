@@ -53,7 +53,7 @@ namespace QuanLyPhongKham3.Controllers
                     break;
             }
 
-            return View(customers.ToPagedList(page ?? 1, 3));
+            return View(customers.ToPagedList(page ?? 1, 5));
         }
 
         // GET: Customers/Details/5

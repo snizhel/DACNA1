@@ -7,15 +7,15 @@
 <h2>Insert patient</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Name,"Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name, "Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -62,6 +62,8 @@
             </div>
         </div>
 
+        <div id="Result"></div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Move on" class="btn btn-default" />
@@ -69,11 +71,49 @@
         </div>
     </div>
 }
-
+<div id="fb"></div>
+<div id="progressbar" class="progress hidden">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+        Please wait...
+    </div>
+</div>
+<img id="loader" src="~/Content/Images/ajax-loader.gif" class="hidden" />
 <div>
     @Html.ActionLink("Quay lại danh sách bệnh nhân", "Index")
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval");
+    <script language="javascript">
+        $("[type='button']").click(function () {
+            //alert($(this).val());
+            $.ajax({
+                url: '/Customers/Create',//Controller/action: xu ly yeu cau
+                method: 'GET',
+                async: true,//xu ly yc theo kieu bat dong bo
+                data: {//Du lieu gui len server
+                    Name: $("#Name").val(),
+                    DateOfBirth: $("#DateOfBirth").val(),
+                    Address: $("#Address").val(),
+                    PhoneNumber: $("#PhoneNumber").val(),
+                    Email: $("#Email").val(),
+                },
+                beforeSend: function () {
+                    $("#fb").html("Dang xu ly yc. Vui long doi trong giay lat...");
+                    $("#progressbar").toggleClass("hidden");
+                    $("#loader").toggleClass("hidden");
+                }
+            }).done(function (result) {//Lay kq sau khi xu ly yc
+                $("#Result").val(result);
+            }).fail(function (xhr, status) {//Xu ly loi
+                $("#Result").val(status);
+            }).always(function () {
+                $("#fb").html("");
+                //document.querySelector("#fb").innerHTML = "";
+                $("#progressbar").toggleClass("hidden");
+                $("#loader").toggleClass("hidden");
+            })
+        });
+    </script>
+
 }

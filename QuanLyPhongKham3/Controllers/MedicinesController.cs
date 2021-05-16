@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyPhongKham3.Models;
-
+using PagedList;//Must install
 namespace QuanLyPhongKham3.Controllers
 {
     [Authorize(Roles ="MedicalStaff,Admin")]
@@ -16,10 +16,49 @@ namespace QuanLyPhongKham3.Controllers
         private QLPKEntities db = new QLPKEntities();
 
         // GET: Medicines
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search, int? page, string sortBy)
         {
+
             var medicine = db.Medicine.Include(m => m.MedicineType);
-            return View(medicine.ToList());
+            ViewBag.NameSort = String.IsNullOrEmpty(sortBy) ? "Name desc" : "";
+            ViewBag.UnitSort = sortBy == "Unit" ? "Unit desc" : "Unit";
+            ViewBag.TypeSort = sortBy == "Type" ? "Type desc" : "Type";
+            var medicines = db.Medicine.AsQueryable();
+
+            if (searchBy == "Unit")
+            {
+                medicines = medicines.Where(x => x.Unit == search || search == null);
+            }
+            else
+            {
+                medicines = medicines.Where(x => x.Name.StartsWith(search) || search == null);
+            }
+            
+
+            switch (sortBy)
+            {
+                case "Name desc":
+                    medicines = medicines.OrderByDescending(x => x.Name);
+                    break;
+                case "Unit desc":
+                    medicines = medicines.OrderByDescending(x => x.Unit);
+                    break;
+                case "Unit":
+                    medicines = medicines.OrderBy(x => x.Unit);
+                    break;
+                case "Type desc":
+                    medicines = medicines.OrderByDescending(x => x.IDMedicineType);
+                    break;
+                case "Type":
+                    medicines = medicines.OrderBy(x => x.IDMedicineType);
+                    break;
+                default:
+                    medicines = medicines.OrderBy(x => x.Name);
+                    break;
+            }
+
+            return View(medicines.ToPagedList(page ?? 1, 5));
+            //return View(medicine.ToList());
         }
 
         // GET: Medicines/Details/5

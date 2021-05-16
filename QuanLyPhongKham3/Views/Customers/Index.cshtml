@@ -20,7 +20,7 @@
     <p>
         @if (this.User.IsInRole("Doctor"))
         {
-           <a style="display:none" href="@Url.Action("Create", "Customers")"></a>
+            <a style="display:none" href="@Url.Action("Create", "Customers")"></a>
 
 
         }
@@ -75,15 +75,15 @@
                 </td>
                 @if (this.User.IsInRole("Doctor"))
                 {
-            <td>
+                    <td>
 
-                <a style="display:none" href="@Url.Action("Edit", "Customers")"></a>
-                <a style="display:none" href="@Url.Action("Details", "Customers")"></a>
-                <a style="display:none" href="@Url.Action("Delete", "Customers")"></a>
-                @Html.ActionLink("Make prescription", "Create", "Prescriptions")
+                        <a style="display:none" href="@Url.Action("Edit", "Customers")"></a>
+                        <a style="display:none" href="@Url.Action("Details", "Customers")"></a>
+                        <a style="display:none" href="@Url.Action("Delete", "Customers")"></a>
+                        @Html.ActionLink("Make prescription", "Create", "Prescriptions")
 
 
-            </td>
+                    </td>
                 }
                 else
                 {
@@ -91,7 +91,7 @@
                         @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                         @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
-                        
+
                     </td>
                 }
 
