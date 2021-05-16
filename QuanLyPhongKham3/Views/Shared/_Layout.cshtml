@@ -107,21 +107,21 @@
                                 <li><a href="@Url.Action("About", "Home")">About</a></li>
                                 <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                                 <li>
-                                    <a href="">Services</a>
+                                    <a href="">Reception</a>
                                     <ul class="dropdown">
                                         <li><a href="@Url.Action("Index","Customers")">Patient</a></li>
-                                        <li><a href="@Url.Action("Index","Medicines")">Medicines</a></li>
-                                        <li><a href="@Url.Action("Index","MedicineTypes")">Drug List</a></li>
-                                        <li><a href="@Url.Action("RegisterEmployee","Account")">Register Employee</a></li>
+                                       
+                                        
                                     </ul>
                                 </li>
                                 
                                 <li>
                                     <a href="#">Manage</a>
                                     <ul class="dropdown">
-                                        <li><a href="@Url.Action("Index","Customers")">Patient</a></li>
+                                        <li><a href="@Url.Action("Index","Customers")">Patient queue</a></li>
+                                        <li><a href="@Url.Action("RegisterEmployee","Account")">Register Staff</a></li>
+                                        <li><a href="@Url.Action("Index","MedicineTypes")">Drug List</a></li>
                                         <li><a href="@Url.Action("Index","Medicines")">Medicines</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
                                     </ul>
                                 </li>
                                 @if (Request.IsAuthenticated)
@@ -143,11 +143,11 @@
                             {
                                 @Html.AntiForgeryToken()
                                 <p class="btn-group nav">
-                                    <button type="button" class="primary-btn" style="background-color:forestgreen;color:aliceblue">@User.Identity.Name</button>
+                                    <a  class="primary-btn" style="background-color:forestgreen;color:aliceblue">@User.Identity.Name</a>
                                     <ul class="dropdown">
-                                        <li>
+                                        <li style="list-style-type: none;">
                                             <a href="javascript:document.getElementById('logoutForm').submit()">
-                                                Log off
+                                                Log out
                                                 <span class="glyphicon glyphicon-log-out"></span>
                                             </a>
                                         </li>

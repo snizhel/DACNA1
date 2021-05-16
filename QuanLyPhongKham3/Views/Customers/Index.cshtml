@@ -41,7 +41,7 @@
                 @Html.Label("Address")
             </th>
             <th>
-                @Html.Label("Phone Number")
+                @Html.ActionLink("Phone Number", "Index",new { sortBy = ViewBag.PhoneSort, seraching = Request["seraching"], search = Request["search"] })
             </th>
             <th>
                 @Html.ActionLink("Gender", "Index", new { sortBy = ViewBag.SexSort, searchBy = Request["searchBy"], search = Request["search"] })

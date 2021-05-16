@@ -21,10 +21,11 @@ namespace QuanLyPhongKham3.Controllers
       //  {
 //return View(db.Customer.ToList());
       //  }
-        public ActionResult Index(string searchBy, string search, int? page, string sortBy)
+        public ActionResult Index(int? seraching, string searchBy, string search, int? page, string sortBy)
         {
             ViewBag.NameSort = String.IsNullOrEmpty(sortBy) ? "Name desc" : "";
             ViewBag.SexSort = sortBy == "Sex" ? "Sex desc" : "Sex";
+            ViewBag.PhoneSort = sortBy == "Phone" ? "Phone desc" : "Phone";
 
             var customers = db.Customer.AsQueryable();
 
@@ -36,7 +37,11 @@ namespace QuanLyPhongKham3.Controllers
             {
                 customers = customers.Where(x => x.Name.StartsWith(search) || search == null);
             }
-
+            if(seraching.HasValue)
+            {
+                return View(db.Customer.Where(x => (x.PhoneNumber == seraching) || search == null));
+            }
+            
             switch (sortBy)
             {
                 case "Name desc":

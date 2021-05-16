@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Chỉnh sửa</h2>
+<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -17,7 +17,7 @@
         @Html.HiddenFor(model => model.ID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Name,"Tên loại thuốc", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Name,"Name of medicine type", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -26,14 +26,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Cập nhật" class="btn btn-default" />
+                <input type="submit" value="Update" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Quay lại danh sách các loại thuốc", "Index")
+    @Html.ActionLink("Back", "Index")
 </div>
 
 @section Scripts {
