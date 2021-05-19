@@ -17,7 +17,7 @@ namespace QuanLyPhongKham3.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Medicine()
         {
-            this.Prescription = new HashSet<Prescription>();
+            this.PrescriptionDetails = new HashSet<PrescriptionDetails>();
         }
     
         public int ID { get; set; }
@@ -30,6 +30,6 @@ namespace QuanLyPhongKham3.Models
     
         public virtual MedicineType MedicineType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescription> Prescription { get; set; }
+        public virtual ICollection<PrescriptionDetails> PrescriptionDetails { get; set; }
     }
 }

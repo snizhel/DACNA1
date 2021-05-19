@@ -17,7 +17,7 @@ namespace QuanLyPhongKham3.Controllers
         // GET: Prescriptions
         public ActionResult Index()
         {
-            var prescription = db.Prescription.Include(p => p.Customer).Include(p => p.Medicine).Include(p => p.Staff);
+            var prescription = db.Prescription.Include(p => p.Customer).Include(p => p.PrescriptionDetails).Include(p => p.Staff);
             return View(prescription.ToList());
         }
         [Authorize(Roles = "MedicalStaff")]
@@ -40,7 +40,7 @@ namespace QuanLyPhongKham3.Controllers
         public ActionResult Create()
         {
             ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name");
-            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name");
+            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage");
             ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name");
             return View();
         }
@@ -60,7 +60,7 @@ namespace QuanLyPhongKham3.Controllers
             }
 
             ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name", prescription.IDCustomer);
-            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name",prescription.IDMedicine);
+            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage", prescription.ID);
             ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
             return View(prescription);
         }
@@ -78,7 +78,7 @@ namespace QuanLyPhongKham3.Controllers
                 return HttpNotFound();
             }
             ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name", prescription.IDCustomer);
-            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name", prescription.IDMedicine);
+            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage", prescription.ID);
             ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
             return View(prescription);
         }
@@ -97,7 +97,7 @@ namespace QuanLyPhongKham3.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name", prescription.IDCustomer);
-            ViewBag.IDMedicine = new SelectList(db.Medicine, "ID", "Name", prescription.IDMedicine);
+            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage", prescription.ID);
             ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
             return View(prescription);
         }

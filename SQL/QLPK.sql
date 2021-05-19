@@ -248,11 +248,6 @@ CREATE TABLE [dbo].[Prescription](
 	[IdStaff] [nvarchar](128) NOT NULL,
 	[IDCustomer] [int] NOT NULL,
 	[DateOfCreate] [smalldatetime] NULL,
-	[IDMedicine] [int] NOT NULL,
-	[Count] [int] NOT NULL,
-	[Dosage] [nvarchar](200)  NULL,
-	[Symptom] [nvarchar](200)  NULL,
-	[Using] [nvarchar](200)  NULL,
 	[Status] [nvarchar](100)  NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -262,7 +257,26 @@ PRIMARY KEY CLUSTERED
 GO
 
 /****** Object:  Table [dbo].[PrescriptionDetails]    Script Date: 07/04/2021 4:31:06 CH ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PrescriptionDetails](
+	[ID] [int] NOT NULL,
+	[IDPrescription] [int] NOT NULL,
+	[IDMedicine] [int] NOT NULL,
+	[Count] [int] NOT NULL,
+	[Dosage] [nvarchar](200) NOT NULL,
+	[Symptom] [nvarchar](200) NOT NULL,
+	[Using] [nvarchar](200) NOT NULL,
 
+	
+ CONSTRAINT [PK_PrescriptionInfo] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
 
 /****** Object:  Table [dbo].[Staff]    Script Date: 07/04/2021 4:31:06 CH ******/
 SET ANSI_NULLS ON
@@ -369,10 +383,12 @@ GO
 ALTER TABLE [dbo].[Prescription]  WITH CHECK ADD FOREIGN KEY([IdStaff])
 REFERENCES [dbo].[Staff] ([ID])
 GO
+ALTER TABLE [dbo].[Prescription]  WITH CHECK ADD FOREIGN KEY([IdStaff])
+REFERENCES [dbo].[Staff] ([ID])
+GO
 
-
-ALTER TABLE [dbo].[Prescription]  WITH CHECK ADD FOREIGN KEY([IDMedicine])
-REFERENCES [dbo].[Medicine] ([ID])
+ALTER TABLE [dbo].[PrescriptionDetails]  WITH CHECK ADD FOREIGN KEY([IDPrescription])
+REFERENCES [dbo].[Prescription] ([ID])
 GO
 drop table Staff
 USE [master]

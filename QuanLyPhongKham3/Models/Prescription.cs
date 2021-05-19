@@ -11,24 +11,24 @@ namespace QuanLyPhongKham3.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Prescription
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Prescription()
+        {
+            this.PrescriptionDetails = new HashSet<PrescriptionDetails>();
+        }
+    
         public int ID { get; set; }
         public string IdStaff { get; set; }
         public int IDCustomer { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public Nullable<System.DateTime> DateOfCreate { get; set; }
-        public int IDMedicine { get; set; }
-        public int Count { get; set; }
-        public string Dosage { get; set; }
-        public string Symptom { get; set; }
-        public string Using { get; set; }
         public string Status { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual Medicine Medicine { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PrescriptionDetails> PrescriptionDetails { get; set; }
         public virtual Staff Staff { get; set; }
     }
 }
