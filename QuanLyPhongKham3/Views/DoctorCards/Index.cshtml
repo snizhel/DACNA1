@@ -1,0 +1,70 @@
+﻿@model IEnumerable<QuanLyPhongKham3.Models.CustomerDoctor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<table class="table">
+    <tr>
+        <th class="text-right">
+            No.
+        </th>
+        <th>
+            @Html.Label("Name")
+        </th>
+        <th>
+            @Html.Label("Day of birth")
+        </th>
+        <th>
+            @Html.Label("Address")
+        </th>
+        <th>
+            @Html.Label("Phone Number")
+        </th>
+        <th>
+            @Html.Label("Sex")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Turn)
+        </th>
+        <th></th>
+    </tr>
+    @{
+        int i = 0;
+    }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-right">
+                @(++i)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Turn, null, htmlFieldName: "turn" + item.ID)
+            </td>
+
+        </tr>
+    }
+
+</table>

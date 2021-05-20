@@ -35,5 +35,7 @@ namespace QuanLyPhongKham3.Models
         public virtual DbSet<Prescription> Prescription { get; set; }
         public virtual DbSet<PrescriptionDetails> PrescriptionDetails { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
+
+        public System.Data.Entity.DbSet<QuanLyPhongKham3.Models.CustomerDoctor> CustomerDoctors { get; set; }
     }
 }

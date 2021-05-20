@@ -11,7 +11,8 @@ namespace QuanLyPhongKham3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +23,8 @@ namespace QuanLyPhongKham3.Models
     
         public int ID { get; set; }
         public string Name { get; set; }
-        public System.DateTime DateOfBirth { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
         public int PhoneNumber { get; set; }
         public string Sex { get; set; }

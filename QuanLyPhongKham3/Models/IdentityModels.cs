@@ -31,5 +31,7 @@ namespace QuanLyPhongKham3.Models
         }
 
         public System.Data.Entity.DbSet<QuanLyPhongKham3.Models.RegisterStaffViewModel> RegisterStaffViewModels { get; set; }
+
+        public System.Data.Entity.DbSet<QuanLyPhongKham3.Models.CustomerDoctor> CustomerDoctors { get; set; }
     }
 }
