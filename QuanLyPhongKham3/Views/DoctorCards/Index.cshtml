@@ -1,4 +1,6 @@
-﻿@model IEnumerable<QuanLyPhongKham3.Models.CustomerDoctor>
+﻿
+@model IEnumerable<QuanLyPhongKham3.Models.CustomerDoctor>
+
 
 @{
     ViewBag.Title = "Index";
@@ -26,12 +28,16 @@
             @Html.Label("Sex")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.Label("Email")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Turn)
+            @Html.Label("Turn")
         </th>
-        <th></th>
+        <th>
+            
+
+
+        </th>
     </tr>
     @{
         int i = 0;
