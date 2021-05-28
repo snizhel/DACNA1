@@ -117,52 +117,7 @@ namespace QuanLyPhongKham3.Controllers
             }
             return View(prescription);
         }
-        public ActionResult CheckScript(int? id)
-        {
-            Prescription prescription = null;
-
-            using (var tran = db.Database.BeginTransaction())
-            {
-                try
-                {
-                    string StaffId = User.Identity.GetUserId();
-                    Staff staff = db.Staff.Where(c => c.ID == StaffId).First();//Lay customer
-                    Customer customer = db.Customer.Find(id);
-                    prescription = new Prescription
-                    {
-                        DateOfCreate = DateTime.Today,
-                        Status = "New",
-                        Customer = customer,
-                        Staff = staff
-                    };
-                    db.Prescription.Add(prescription);
-                    IList<Medicine> items = PrescriptionDetails.getInstance().List.Values;
-                    foreach (var item in items)
-                    {
-                        Medicine medicine = db.Medicine.Find(item.ID);
-                        PrescriptionDetails prescriptionDetails = new PrescriptionDetails
-                        {
-                            IDPrescription = prescription.ID,
-                            Medicine = medicine,
-                            Count=medicine.Count,
-                            
-
-                        };
-                        db.PrescriptionDetails.Add(prescriptionDetails);
-                    }
-                    //throw new Exception();
-                    db.SaveChanges();
-                    //Ket thuc transaction
-                    tran.Commit();
-                }
-                catch (Exception ex)
-                {
-                    tran.Rollback();
-                    throw ex;
-                }
-            }
-            return View(prescription);
-        }
+        
         // POST: Prescriptions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

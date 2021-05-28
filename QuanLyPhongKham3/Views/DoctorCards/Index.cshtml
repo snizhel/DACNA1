@@ -1,13 +1,10 @@
-﻿
-@model IEnumerable<QuanLyPhongKham3.Models.CustomerDoctor>
+﻿@model IEnumerable<QuanLyPhongKham3.Models.Prescription>
 
 
-@{
-    ViewBag.Title = "Index";
-}
+@{ ViewBag.Title = "Index"; }
 
 
-<table class="table">
+<table class="table" onload="JavaScript:timedRefresh(5000);">
     <tr>
         <th class="text-right">
             No.
@@ -16,61 +13,57 @@
             @Html.Label("Name")
         </th>
         <th>
-            @Html.Label("Day of birth")
+            @Html.Label("Doctor Name")
         </th>
         <th>
-            @Html.Label("Address")
+            @Html.Label("Status")
         </th>
         <th>
-            @Html.Label("Phone Number")
+            @Html.Label("Date of Create")
         </th>
+
         <th>
-            @Html.Label("Sex")
-        </th>
-        <th>
-            @Html.Label("Email")
-        </th>
-        <th>
-            @Html.Label("Turn")
-        </th>
-        <th>
-            
+
 
 
         </th>
     </tr>
-    @{
-        int i = 0;
-    }
+    @{ int i = 0; }
     @foreach (var item in Model)
     {
-        <tr>
-            <td class="text-right">
-                @(++i)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfBirth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sex)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Turn, null, htmlFieldName: "turn" + item.ID)
-            </td>
+<tr>
+    <td class="text-right">
+        @(++i)
+    </td>
 
-        </tr>
-    }
+    <td>
+        @Html.DisplayFor(modelItem => item.Customer.Name)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Staff.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateOfCreate)
+    </td>
+    <td>
+        @Html.ActionLink("Apply", "CheckScript", "DoctorCards", htmlAttributes: new { @class = "btn btn-primary glyphicon glyphicon-ok" })
+    </td>
+</tr>
+}
 
 </table>
+
+@section Scripts{
+    <script type="text/javascript">
+        function timedRefresh(timeoutPeriod) {
+            setTimeout(function () {
+                location.reload(true);
+            }, timeoutPeriod);
+        }
+    </script>
+
+}

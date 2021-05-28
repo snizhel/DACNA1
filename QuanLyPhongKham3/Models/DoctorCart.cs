@@ -11,28 +11,20 @@ namespace QuanLyPhongKham3.Models
         {
             return new DoctorCart();
         }
-        public SortedList<int, CustomerDoctor> List
+        public SortedList<int, Prescription> List
         {
             get
             {
                 HttpSessionStateBase Session = new HttpSessionStateWrapper(HttpContext.Current.Session);
                 if (Session["list"] == null)
-                    Session["list"] = new SortedList<int, CustomerDoctor>();
-                return Session["list"] as SortedList<int, CustomerDoctor>;
+                    Session["list"] = new SortedList<int, Prescription>();
+                return Session["list"] as SortedList<int, Prescription>;
             }
         }
-        public void Add(CustomerDoctor customer)
+        public void Add(Prescription customer)
         {
-            if (List.ContainsKey(customer.ID))
-            {
-                CustomerDoctor currentItem = List[customer.ID];
-                currentItem.Turn += customer.Turn;
-            }
-            else
-            {
-                List.Add(customer.ID, customer);
-            }
-           
+
+            List.Add(customer.ID, customer);
         }
 
     }

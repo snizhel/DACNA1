@@ -22,14 +22,12 @@
         {
             <a style="display:none" href="@Url.Action("Create", "Customers")"></a>
 
-
         }
         else
         {
             @Html.ActionLink("Insert Patient", "Create")
         }
     </p>
-
     <table class="table">
 
         <tr>
@@ -63,12 +61,10 @@
 
         @foreach (var item in Model)
         {
-            using (Html.BeginForm("Add", "DoctorCards", FormMethod.Get))
             {
-                <tr class="form-horizontal">
+                <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.ID)
-                        @Html.HiddenFor(modelItem => item.ID, htmlAttributes: new { @class = "form-control" })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
@@ -89,7 +85,7 @@
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td>
-                        @Html.DropDownList("IdStaff", (SelectList)ViewBag.IdStaff, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("IdStaff" + item.ID, (SelectList)ViewBag.IdStaff, htmlAttributes: new { @class = "form-control" })
 
                     </td>
                     @*
@@ -97,7 +93,7 @@
                             <button type="submit">Transfer1</button>
                         </td>
                     *@
-                    <td type="submit" class="add-to-cart" title="Add to Cart" data-id="@item.ID">
+                    <td class="add-to-cart" title="Add to Cart" data-id="@item.ID">
                         <span class="glyphicon" style="color:red">Transfer</span>
                     </td>
 
@@ -137,15 +133,18 @@
 @section Scripts{
     <script language="javascript">
         $(".add-to-cart").click(function () {
+            var tr = $(this).closest("tr");
             var item_id = $(this).data("id");
-            //alert(item_id)
+            var doctor_id = $("#IdStaff" + item_id).val()
+            alert(doctor_id)
             $.ajax({
                 url: '/DoctorCards/Add',
                 method: 'GET',
                 async: true,
                 cache: false,
                 data: {
-                    id: item_id,
+                    patient_id: item_id,
+                    doctor_id: doctor_id
 
                 },
                 beforeSend: function () {
@@ -154,6 +153,7 @@
             }).done(function (result) {
                 if (result.status == "OK") {
                     alert("Success!", "Success!", "Adding the patient to doctor successfully.");
+                    tr.remove();
                 }
                 else if (result.status == "ER") {
                     //$("#fb").html(result.data);
