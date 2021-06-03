@@ -22,6 +22,7 @@
         {
             <a style="display:none" href="@Url.Action("Create", "Customers")"></a>
 
+
         }
         else
         {
@@ -29,7 +30,6 @@
         }
     </p>
     <table class="table">
-
         <tr>
             <th>
                 @Html.Label("ID")
@@ -52,79 +52,63 @@
             <th>
                 @Html.Label("Email")
             </th>
-            <th>
-
-
-            </th>
+            <th></th>
         </tr>
-
 
         @foreach (var item in Model)
         {
-            {
-                <tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sex)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DropDownList("IdStaff" + item.ID, (SelectList)ViewBag.IdStaff, htmlAttributes: new { @class = "form-control" })
+
+                </td>
+                <td type="button" class="add-to-cart" title="Add to Cart" data-id="@item.ID">
+                    <span class="glyphicon" style="color:red">Transfer</span>
+                </td>
+                @if (this.User.IsInRole("Doctor"))
+                {
                     <td>
-                        @Html.DisplayFor(modelItem => item.ID)
+
+                        <a style="display:none" href="@Url.Action("Edit", "Customers")"></a>
+                        <a style="display:none" href="@Url.Action("Details", "Customers")"></a>
+                        <a style="display:none" href="@Url.Action("Delete", "Customers")"></a>
+                        @Html.ActionLink("Make prescription", "Create", "Prescriptions")
+
+
                     </td>
+                }
+                else
+                {
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateOfBirth)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sex)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DropDownList("IdStaff" + item.ID, (SelectList)ViewBag.IdStaff, htmlAttributes: new { @class = "form-control" })
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
 
                     </td>
-                    @*
-                        <td>
-                            <button type="submit">Transfer1</button>
-                        </td>
-                    *@
-                    <td class="add-to-cart" title="Add to Cart" data-id="@item.ID">
-                        <span class="glyphicon" style="color:red">Transfer</span>
-                    </td>
+                }
 
-                    }
-
-                    @if (this.User.IsInRole("Doctor"))
-                    {
-                        <td>
-
-                            <a style="display:none" href="@Url.Action("Edit", "Customers")"></a>
-                            <a style="display:none" href="@Url.Action("Details", "Customers")"></a>
-                            <a style="display:none" href="@Url.Action("Delete", "Customers")"></a>
-                            @Html.ActionLink("Make prescription", "Create", "Prescriptions")
-
-
-                        </td>
-                    }
-                    else
-                    {
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
-
-                        </td>
-                    }
-
-                </tr>
-
-            }
-
+            </tr>
         }
 
     </table>

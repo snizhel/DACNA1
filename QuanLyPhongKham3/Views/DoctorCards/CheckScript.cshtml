@@ -1,131 +1,117 @@
 ﻿@using QuanLyPhongKham3.Models
-@model QuanLyPhongKham3.Models.Prescription
+@model QuanLyPhongKham3.Models.PrescriptionDetails
 
 @{
     ViewBag.Title = "CheckScript";
 }
 
-<h2>CheckScript</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.Label("")
-        </th>
-        <th>
-            @Html.Label("")
-        </th>
-        <th>
-            @Html.Label("")
-        </th>
-        <th>
-            @Html.Label("")
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.PrescriptionDetails)
-    {
-        <div style="padding-left: 50px;padding-right: 30px;padding-top:50px;" class="container">
-            <h2 class="text-center">Detail</h2>
-
-            <table class="table table-dark table-striped table-hover tbl_code_with_mark">
-                <tr>
-                    <th>Medicine Name</th>
-                    <th>Number</th>
-                    <th>Using</th>
-                    <th>Dosage</th>
-                    <th>Option</th>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="col" type="text">
-                            @Html.DropDownList("IDMedicine", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(modelItem => item.IDMedicine, "", new { @class = "text-danger" })
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col">
-                            @Html.EditorFor(modelItem => item.Count, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(modelItem => item.Medicine.Count, "", new { @class = "text-danger" })
-                        </div>
-                    </td>
-                    <td>
-                        <div class="col-md-10">
-                            @Html.EditorFor(modelItem => item.Using, new { htmlAttributes = new { @class = "form-control Material_Serial" } })
-                            @Html.ValidationMessageFor(modelItem => item.Using, "", new { @class = "text-danger" })
-                        </div>
-                    </td>
-
-                    <td>
-                        <div class="col-md-10">
-                            @Html.EditorFor(modelItem => item.Dosage, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(modelItem => item.Dosage, "", new { @class = "text-danger" })
-                        </div>
-                    </td>
-
-                    <td>
-                        <span class="btn btn-sm btn-success btn_row_below_clone">Add</span> |
-                        <span class="btn btn-sm btn-danger btn_row_delete">Delete</span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    }
 
 
-</table>
+
+
+
+@foreach (var item in Model.PrescriptionDetails)
+
+{
+    <div style="padding-left: 50px;padding-right: 30px;padding-top:50px;" class="container">
+        <h2 class="text-center">Detail</h2>
+
+        <table class="table table-dark table-striped table-hover tbl_code_with_mark">
+            <tr>
+                <th>Medicine Name</th>
+                <th>Number</th>
+                <th>Using</th>
+                <th>Dosage</th>
+                <th>Option</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col" type="text">
+                        @Html.DropDownList("IDMedicine", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(modelItem => item.IDMedicine, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+                <td>
+                    <div class="col">
+                        @Html.EditorFor(modelItem => item.Medicine.Count, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(modelItem => item.Medicine.Count, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        @Html.EditorFor(modelItem => item.Using, new { htmlAttributes = new { @class = "form-control Material_Serial" } })
+                        @Html.ValidationMessageFor(modelItem => item.Using, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+
+                <td>
+                    <div class="col-md-10">
+                        @Html.EditorFor(modelItem => item.Dosage, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(modelItem => item.Dosage, "", new { @class = "text-danger" })
+                    </div>
+                </td>
+
+                <td>
+                    <span class="btn btn-sm btn-success btn_row_below_clone">Add</span> |
+                    <span class="btn btn-sm btn-danger btn_row_delete">Delete</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+
+
 @section Script{
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script>
-    $('.Material_Serial').keypress(function (event) {
+        $('.Material_Serial').keypress(function (event) {
 
-        disableEnterKey(event);
+            disableEnterKey(event);
 
-    });
+        });
     </script>
     <script>
-    $(document).ready(function ($) {
-        //--->add row at the end > start
-        $(document).on('click', ".btn_row_add_below_end", function (e) {
-            var tableBody = $(document).find('.tbl_code_with_mark').find("tbody");
-            var trLast = tableBody.find("tr:last");
-            var trNew = trLast.clone();
-            trLast.after(trNew);
-        });
-        //--->add row at the end > end
-
-
-        //--->current row > new > start
-        $(document).on('click', ".btn_row_below_new", function (e) {
-            var r = $(this).closest('tr').clone();
-
-            $.each(r.find('td'), function (i1, v1) {
-                //clear all data/value in td/cell
-                $(this).html('');
+        $(document).ready(function ($) {
+            //--->add row at the end > start
+            $(document).on('click', ".btn_row_add_below_end", function (e) {
+                var tableBody = $(document).find('.tbl_code_with_mark').find("tbody");
+                var trLast = tableBody.find("tr:last");
+                var trNew = trLast.clone();
+                trLast.after(trNew);
             });
+            //--->add row at the end > end
 
-            $(this).closest('tr').after(r);
+
+            //--->current row > new > start
+            $(document).on('click', ".btn_row_below_new", function (e) {
+                var r = $(this).closest('tr').clone();
+
+                $.each(r.find('td'), function (i1, v1) {
+                    //clear all data/value in td/cell
+                    $(this).html('');
+                });
+
+                $(this).closest('tr').after(r);
+            });
+            //--->current row > new > end
+
+
+            //--->current row > clone > start
+            $(document).on('click', ".btn_row_below_clone", function (e) {
+                var r = $(this).closest('tr').clone();
+                $(this).closest('tr').after(r);
+            });
+            //--->current row > clone > end
+
+            //--->current row > delete > start
+            $(document).on('click', ".btn_row_delete", function (e) {
+                var r = $(this).closest('tr').remove();
+            });
+            //--->current row > delete > end
+
         });
-        //--->current row > new > end
 
 
-        //--->current row > clone > start
-        $(document).on('click', ".btn_row_below_clone", function (e) {
-            var r = $(this).closest('tr').clone();
-            $(this).closest('tr').after(r);
-        });
-        //--->current row > clone > end
-
-        //--->current row > delete > start
-        $(document).on('click', ".btn_row_delete", function (e) {
-            var r = $(this).closest('tr').remove();
-        });
-        //--->current row > delete > end
-
-    });
     </script>
 }

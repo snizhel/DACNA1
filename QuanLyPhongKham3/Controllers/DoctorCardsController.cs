@@ -55,39 +55,39 @@ namespace QuanLyPhongKham3.Controllers
             //     //return View(DoctorCart.getInstance().List.Values);
         }
 
-        public ActionResult CheckScript(int? id)
+        public ActionResult CheckScript( int pres_id)
         {
-            Prescription prescription = null;
-
-            using (var tran = db.Database.BeginTransaction())
+            Prescription prescription = db.Prescription.Find(pres_id);
+            try
             {
-                try
+                IList<Medicine> items = PrescriptionDetails.getInstance().List.Values;
+                foreach (var item in items)
                 {
-                    Customer customer = db.Customer.Find(id);
-                    IList<Medicine> items = PrescriptionDetails.getInstance().List.Values;
-                    foreach (var item in items) {
-                        Medicine medicine = db.Medicine.Find(item.ID);
-                        PrescriptionDetails prescriptionDetails = new PrescriptionDetails
-                        {
-                            IDPrescription = prescription.ID,
-                            IDMedicine = medicine.ID,
-                            Count = medicine.Count,
-                            
-                        };
-                        db.PrescriptionDetails.Add(prescriptionDetails);
-                    }
-                    //throw new Exception();
-                    db.SaveChanges();
-                    //Ket thuc transaction
-                    tran.Commit();
+                    Medicine medicine = db.Medicine.Find(item.ID);
+                    ViewBag.IdMedicine = new SelectList(db.Medicine, "ID", "Name");
+                    PrescriptionDetails prescriptionDetails = new PrescriptionDetails
+                    {
+                        IDPrescription = prescription.ID,
+                        IDMedicine = medicine.ID,
+                        Count = medicine.Count,
+
+                    };
+                    db.PrescriptionDetails.Add(prescriptionDetails);
                 }
-                catch (Exception ex)
+                db.SaveChanges();
+                return Json(new
                 {
-                    tran.Rollback();
-                    throw ex;
-                }
+                    status = "OK"
+                }, JsonRequestBehavior.AllowGet);
             }
-            return View(prescription);
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    status = "ERROR",
+                    message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
 
 

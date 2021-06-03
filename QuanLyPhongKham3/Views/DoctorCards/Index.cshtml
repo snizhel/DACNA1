@@ -49,11 +49,12 @@
     <td>
         @Html.DisplayFor(modelItem => item.DateOfCreate)
     </td>
-    <td>
-        @Html.ActionLink("Apply", "CheckScript", "DoctorCards", htmlAttributes: new { @class = "btn btn-primary glyphicon glyphicon-ok" })
+
+    <td type="button" class="btn btn-primary apply" data-id="@item.ID">
+        <span class="glyphicon glyphicon-shopping-cart"></span> Apply
     </td>
-</tr>
-}
+
+</tr>}
 
 </table>
 
@@ -64,6 +65,40 @@
                 location.reload(true);
             }, timeoutPeriod);
         }
+
+
+
+        $(".apply").click(function () {
+            var pres_id = $(this).data("id");
+            //alert(pres_id)
+            $.ajax({       
+                url: '/DoctorCards/CheckScript',
+                method: 'GET',
+                async: true,
+                cache: false,
+                data: {
+                    id: pres_id
+                },
+                beforeSend: function () {
+                    alert("Waiting...");
+                }
+            }).done(function (result) {
+                if (result.status == "OK") {
+                    $("#total-amount").html(result.total_amount);
+                    alert("Success!");
+                }
+                else if (result.status == "ER") {
+                    //$("#fb").html(result.data);
+                    alert("Error!", "Error!", result.data);
+                }
+
+            }).fail(function (xhr, status) {
+                alert("danger", "Error!", status);
+            }).always(function () {
+                
+            })
+        })
+
     </script>
 
 }
