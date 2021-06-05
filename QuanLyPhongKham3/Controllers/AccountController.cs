@@ -210,11 +210,11 @@ namespace QuanLyPhongKham3.Controllers
                     {
                         Type = model.Type,
                         Name = model.Name,
-                        ID = user.Id
+                        UserId = user.Id
                     };
 
                     db.Staff.Add(staff);
-                    db.SaveChanges();//do
+                    db.SaveChanges();
                     //Gan vai tro cho nhan vien
                     UserManager.AddToRole(user.Id, model.Role);
 

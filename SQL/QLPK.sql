@@ -82,30 +82,14 @@ ALTER DATABASE [QLPK] SET QUERY_STORE = OFF
 GO
 USE [QLPK]
 GO
-/****** Object:  Table [dbo].[__MigrationHistory]    Script Date: 07/04/2021 4:31:06 CH ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[__MigrationHistory](
-	[MigrationId] [nvarchar](150) NOT NULL,
-	[ContextKey] [nvarchar](300) NOT NULL,
-	[Model] [varbinary](max) NOT NULL,
-	[ProductVersion] [nvarchar](32) NOT NULL,
- CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY CLUSTERED 
-(
-	[MigrationId] ASC,
-	[ContextKey] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
+
 /****** Object:  Table [dbo].[AspNetRoles]    Script Date: 07/04/2021 4:31:06 CH ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[AspNetRoles](
-	[Id] [nvarchar](128) NOT NULL,
+	[Id] [nvarchar](128)  NOT NULL,
 	[Name] [nvarchar](256) NOT NULL,
  CONSTRAINT [PK_dbo.AspNetRoles] PRIMARY KEY CLUSTERED 
 (
@@ -198,6 +182,7 @@ CREATE TABLE [dbo].[Customer](
 	[PhoneNumber] [int] NOT NULL,
 	[Sex] [nvarchar](100) NOT NULL,
 	[Email] [nvarchar](100) NOT NULL,
+	[UserId] [nvarchar](128) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -245,9 +230,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Prescription](
 	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[IdStaff] [nvarchar](128) NOT NULL,
+	[IdStaff] [int] NOT NULL,
 	[IDCustomer] [int] NOT NULL,
 	[DateOfCreate] [smalldatetime] NULL,
+	[Symptom] [nvarchar](200)  NULL,
+	[Diagnosis] [nvarchar](200) NULL,
 	[Status] [nvarchar](100)  NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -262,15 +249,16 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[PrescriptionDetails](
-	[ID] [int] NOT NULL,
+	[ID] [int] IDENTITY(1,1) NOT NULL,
 	[IDPrescription] [int] NOT NULL,
 	[IDMedicine] [int] NOT NULL,
-	[Count] [int] NOT NULL,
-	[Dosage] [nvarchar](200) NOT NULL,
-	[Symptom] [nvarchar](200) NOT NULL,
+	[Quantity] [int] NOT NULL,
+	[Morning] [int] NOT NULL,
+	[Noon] [int] NOT NULL,
+	[Afternoon] [int] NOT NULL,
+	[Night] [int] NOT NULL,
 	[Using] [nvarchar](200) NOT NULL,
 
-	
  CONSTRAINT [PK_PrescriptionInfo] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -284,13 +272,14 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Staff](
-	[ID] [nvarchar](128) NOT NULL,
+	[UserId] [nvarchar](128) NULL,
 	[Name] [nvarchar](100)  NULL,
 	[DateOfBirth] [date]  NULL,
 	[Sex] [nvarchar](100)  NULL,
 	[Address] [nvarchar](200)  NULL,
 	[StartDay] [date]  NULL,
 	[Type] [nvarchar](100) NOT NULL,
+	[ID] [int] IDENTITY(1,1) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
@@ -377,20 +366,22 @@ GO
 ALTER TABLE [dbo].[Prescription]  WITH CHECK ADD FOREIGN KEY([IDCustomer])
 REFERENCES [dbo].[Customer] ([ID])
 GO
-ALTER TABLE [dbo].[Staff]  WITH CHECK ADD FOREIGN KEY([ID])
+ALTER TABLE [dbo].[Staff]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[AspNetUsers] ([Id])
 GO
+
 ALTER TABLE [dbo].[Prescription]  WITH CHECK ADD FOREIGN KEY([IdStaff])
 REFERENCES [dbo].[Staff] ([ID])
 GO
-ALTER TABLE [dbo].[Prescription]  WITH CHECK ADD FOREIGN KEY([IdStaff])
-REFERENCES [dbo].[Staff] ([ID])
+
+ALTER TABLE [dbo].[PrescriptionDetails]  WITH CHECK ADD FOREIGN KEY([IDMedicine])
+REFERENCES [dbo].[Medicine] ([ID])
 GO
 
 ALTER TABLE [dbo].[PrescriptionDetails]  WITH CHECK ADD FOREIGN KEY([IDPrescription])
 REFERENCES [dbo].[Prescription] ([ID])
 GO
-drop table Staff
+
 USE [master]
 GO
 ALTER DATABASE [QLPK] SET  READ_WRITE 

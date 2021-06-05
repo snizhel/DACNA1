@@ -60,11 +60,19 @@ namespace QuanLyPhongKham3
                 roleManager.Create(role);
             }
 
-            // Creating Customer role     
-            if (!roleManager.RoleExists("Customer"))
+            // Creating Doctor role     
+            if (!roleManager.RoleExists("Doctor"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Customer";
+                role.Name = "Doctor";
+                roleManager.Create(role);
+            }
+
+            // Creating Dispenser role     
+            if (!roleManager.RoleExists("Dispenser"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Dispenser";
                 roleManager.Create(role);
             }
         }

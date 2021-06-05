@@ -51,6 +51,7 @@ namespace QuanLyPhongKham3.Controllers
         {
             if (ModelState.IsValid)
             {
+                aspNetRoles.Id = Guid.NewGuid().ToString();
                 db.AspNetRoles.Add(aspNetRoles);
                 db.SaveChanges();
                 return RedirectToAction("Index");

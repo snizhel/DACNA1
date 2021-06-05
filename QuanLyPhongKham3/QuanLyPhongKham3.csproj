@@ -478,6 +478,7 @@
     <Content Include="Views\Account\RegisterEmployee.cshtml" />
     <Content Include="Views\DoctorCards\Index.cshtml" />
     <Content Include="Views\DoctorCards\CheckScript.cshtml" />
+    <Content Include="Views\Prescriptions\Apply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

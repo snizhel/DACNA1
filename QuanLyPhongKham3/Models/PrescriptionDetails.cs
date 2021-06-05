@@ -11,30 +11,17 @@ namespace QuanLyPhongKham3.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
-
+    
     public partial class PrescriptionDetails
     {
-        public static PrescriptionDetails getInstance()
-        {
-            return new PrescriptionDetails();
-        }
-        public SortedList<int, Medicine> List
-        {
-            get
-            {
-                HttpSessionStateBase Session = new HttpSessionStateWrapper(HttpContext.Current.Session);
-                if (Session["list"] == null)
-                    Session["list"] = new SortedList<int, Medicine>();
-                return Session["list"] as SortedList<int, Medicine>;
-            }
-        }
         public int ID { get; set; }
         public int IDPrescription { get; set; }
         public int IDMedicine { get; set; }
-        public int Count { get; set; }
-        public string Dosage { get; set; }
-        public string Symptom { get; set; }
+        public int Quantity { get; set; }
+        public int Morning { get; set; }
+        public int Noon { get; set; }
+        public int Afternoon { get; set; }
+        public int Night { get; set; }
         public string Using { get; set; }
     
         public virtual Medicine Medicine { get; set; }

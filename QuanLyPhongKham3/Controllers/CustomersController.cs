@@ -26,7 +26,7 @@ namespace QuanLyPhongKham3.Controllers
             ViewBag.NameSort = String.IsNullOrEmpty(sortBy) ? "Name desc" : "";
             ViewBag.SexSort = sortBy == "Sex" ? "Sex desc" : "Sex";
             ViewBag.PhoneSort = sortBy == "Phone" ? "Phone desc" : "Phone";
-            ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name");
+            ViewBag.IdStaff = new SelectList(db.Staff.Where(x => x.Type.Contains("Doctor")).ToList(), "ID", "Name");
             var customers = db.Customer.AsQueryable();
 
             if (searchBy == "Sex")

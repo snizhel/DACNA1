@@ -14,14 +14,85 @@ namespace QuanLyPhongKham3.Controllers
     public class PrescriptionsController : Controller
     {
         private QLPKEntities db = new QLPKEntities();
-        [Authorize(Roles = "MedicalStaff,Admin")]
+        
         // GET: Prescriptions
         public ActionResult Index()
         {
-            var prescription = db.Prescription.Include(p => p.Customer).Include(p => p.PrescriptionDetails).Include(p => p.Staff);
-            return View(prescription.ToList());
+            Response.AddHeader("Refresh", "5");
+            return View(db.Prescription.Where(x => x.Status == "New" && x.DateOfCreate == DateTime.Today).ToList());
         }
-        [Authorize(Roles = "MedicalStaff")]
+
+        public ActionResult Add(int patient_id, int doctor_id)
+        {
+            Customer customer = db.Customer.Find(patient_id);
+
+            Prescription prescription = new Prescription
+            {
+                IDCustomer = patient_id,
+                IdStaff = doctor_id,
+                Status = "New",
+                DateOfCreate = DateTime.Today,
+
+
+            };
+            try
+            {
+                db.Prescription.Add(prescription);
+                db.SaveChanges();
+                return Json(new
+                {
+                    status = "OK"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    status = "ERROR",
+                    message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+            ////   ViewBag.Staff = new SelectList(db.AspNetRoles.Where(role => role.Name.Contains("Doctor")).ToList(), "Name", "Name", "Employee");
+            //     DoctorCart cart = DoctorCart.getInstance();
+            //     cart.Add(item);
+            //     //return View(DoctorCart.getInstance().List.Values);
+        }
+
+
+        // GET: Prescriptions
+        public ActionResult Apply(int? id)
+        {
+            Prescription prescription = db.Prescription.Find(id);
+            if (prescription == null)
+            {
+                return HttpNotFound();
+            }
+            var medicines = db.Medicine.Select(x => new { Id = x.ID, Name = x.Name + " (" + x.Unit + ")" });
+            ViewBag.MedicineId = new SelectList(medicines, "Id", "Name");
+            ViewBag.prescription = prescription;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public  ActionResult Apply([Bind(Include = "IDPrescription,IDMedicine,Quantity,Morning,Noon,Afternoon,Night,Using")] PrescriptionDetails detail)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                db.PrescriptionDetails.Add(detail);
+                db.SaveChanges();
+                return RedirectToAction("Apply", new { id = detail.IDPrescription });
+            }
+
+            var medicines = db.Medicine.Select(x => new { Id = x.ID, Name = x.Name + " (" + x.Unit + ")" });
+            ViewBag.MedicineId = new SelectList(medicines, "Id", "Name");
+            ViewBag.prescription = db.Prescription.Find(detail.IDPrescription);
+            return View();
+        }
+
+
+
         // GET: Prescriptions/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,13 +107,12 @@ namespace QuanLyPhongKham3.Controllers
             }
             return View(prescription);
         }
-        [Authorize(Roles = "Doctor")]
+
         // GET: Prescriptions/Create
         public ActionResult Create()
         {
-            ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name");
-            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage");
-            ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name");
+            ViewBag.PatientId = new SelectList(db.Customer, "Id", "Name");
+            ViewBag.DoctorId = new SelectList(db.Staff, "Id", "Name");
             return View();
         }
 
@@ -51,7 +121,7 @@ namespace QuanLyPhongKham3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,IdStaff,IDCustomer,DateOfCreate,IDMedicine,Count,Dosage,Symptom,Using,Status")] Prescription prescription)
+        public ActionResult Create([Bind(Include = "Id,DoctorId,PatientId,DateOfCreate,Symptom,Diagnosis,Status")] Prescription prescription)
         {
             if (ModelState.IsValid)
             {
@@ -60,12 +130,11 @@ namespace QuanLyPhongKham3.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name", prescription.IDCustomer);
-            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage", prescription.ID);
-            ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
+            ViewBag.PatientId = new SelectList(db.Customer, "Id", "Name", prescription.IDCustomer);
+            ViewBag.DoctorId = new SelectList(db.Staff, "Id", "Name", prescription.IdStaff);
             return View(prescription);
         }
-        [Authorize(Roles = "MedicalStaff")]
+
         // GET: Prescriptions/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -78,9 +147,8 @@ namespace QuanLyPhongKham3.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name", prescription.IDCustomer);
-            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage", prescription.ID);
-            ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
+            ViewBag.PatientId = new SelectList(db.Customer, "Id", "Name", prescription.IDCustomer);
+            ViewBag.DoctorId = new SelectList(db.Staff, "Id", "Name", prescription.IdStaff);
             return View(prescription);
         }
 
@@ -89,7 +157,7 @@ namespace QuanLyPhongKham3.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,IdStaff,IDCustomer,DateOfCreate,IDMedicine,Count,Dosage,Symptom,Using,Status")] Prescription prescription)
+        public ActionResult Edit([Bind(Include = "Id,DoctorId,PatientId,DateOfCreate,Symptom,Diagnosis,Status")] Prescription prescription)
         {
             if (ModelState.IsValid)
             {
@@ -97,9 +165,8 @@ namespace QuanLyPhongKham3.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDCustomer = new SelectList(db.Customer, "ID", "Name", prescription.IDCustomer);
-            ViewBag.IDPrescriptionDetails = new SelectList(db.PrescriptionDetails, "IDPrescription", "Dosage", prescription.ID);
-            ViewBag.IdStaff = new SelectList(db.Staff, "ID", "Name", prescription.IdStaff);
+            ViewBag.PatientId = new SelectList(db.Customer, "Id", "Name", prescription.IDCustomer);
+            ViewBag.DoctorId = new SelectList(db.Staff, "Id", "Name", prescription.IdStaff);
             return View(prescription);
         }
 
@@ -117,7 +184,7 @@ namespace QuanLyPhongKham3.Controllers
             }
             return View(prescription);
         }
-        
+
         // POST: Prescriptions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -1,71 +1,76 @@
 ﻿@model IEnumerable<QuanLyPhongKham3.Models.Prescription>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
+@{ ViewBag.Title = "Index"; }
 
-<p>
-    @Html.ActionLink("Thêm toa thuốc", "Create")
-</p>
-<table class="table">
+
+<table class="table" onload="JavaScript:timedRefresh(5000);">
     <tr>
-        <th>
-            @Html.Label("Ngày lập toa")
-        </th>
-        
-        <th>
-            @Html.Label("Trạng thái")
+        <th class="text-right">
+            No.
         </th>
         <th>
-            @Html.Label("Tên bệnh nhân")
+            @Html.Label("Name")
         </th>
-        
         <th>
-            @Html.Label("Người lập toa")
+            @Html.Label("Doctor Name")
         </th>
-        <th></th>
+        <th>
+            @Html.Label("Status")
+        </th>
+        <th>
+            @Html.Label("Date of Create")
+        </th>
+
+        <th>
+
+
+
+        </th>
     </tr>
+    @{ int i = 0; }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-right">
+                @(++i)
+            </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateOfCreate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Count)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dosage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Symptom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Using)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Medicine.Name)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Name)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Staff.Name)
-        </td>
-        <td>
-            @*@Html.ActionLink("Chỉnh sửa", "Edit", new { id=item.ID }) |*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Staff.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfCreate)
+            </td>
 
-            @Html.ActionLink("Thông tin toa thuốc", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Xóa", "Delete", new { id = item.ID })
-         
-        </td>
-    </tr>
+            <td>
+                @Html.ActionLink("Apply", "Apply", new { id = item.ID })
+            </td>
+
+        </tr>
 }
 
 </table>
+
+@section Scripts{
+    <script type="text/javascript">
+        function timedRefresh(timeoutPeriod) {
+            setTimeout(function () {
+                location.reload(true);
+            }, timeoutPeriod);
+        }
+
+
+
+        
+
+    </script>
+
+}

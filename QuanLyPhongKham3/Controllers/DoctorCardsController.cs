@@ -13,13 +13,13 @@ namespace QuanLyPhongKham3.Controllers
         // GET: DoctorCard
         public ActionResult Index()
         {
-            Response.AddHeader("Refresh", "30");
+            Response.AddHeader("Refresh", "5");
             return View(db.Prescription.Where(x => x.Status == "New" && x.DateOfCreate == DateTime.Today).ToList());
         }
 
         //[ValidateAntiForgeryToken]
         // [HttpPost]
-        public ActionResult Add(int patient_id, string doctor_id)
+        public ActionResult Add(int patient_id, int doctor_id)
         {
             Customer customer = db.Customer.Find(patient_id);
 
@@ -55,40 +55,40 @@ namespace QuanLyPhongKham3.Controllers
             //     //return View(DoctorCart.getInstance().List.Values);
         }
 
-        public ActionResult CheckScript( int pres_id)
-        {
-            Prescription prescription = db.Prescription.Find(pres_id);
-            try
-            {
-                IList<Medicine> items = PrescriptionDetails.getInstance().List.Values;
-                foreach (var item in items)
-                {
-                    Medicine medicine = db.Medicine.Find(item.ID);
-                    ViewBag.IdMedicine = new SelectList(db.Medicine, "ID", "Name");
-                    PrescriptionDetails prescriptionDetails = new PrescriptionDetails
-                    {
-                        IDPrescription = prescription.ID,
-                        IDMedicine = medicine.ID,
-                        Count = medicine.Count,
+        //public ActionResult CheckScript( int pres_id)
+        //{
+        //    Prescription prescription = db.Prescription.Find(pres_id);
+        //    try
+        //    {
+                
+        //        foreach (var item in items)
+        //        {
+        //            Medicine medicine = db.Medicine.Find(item.ID);
+        //            ViewBag.IdMedicine = new SelectList(db.Medicine, "ID", "Name");
+        //            PrescriptionDetails prescriptionDetails = new PrescriptionDetails
+        //            {
+        //                IDPrescription = prescription.ID,
+        //                IDMedicine = medicine.ID,
+                       
 
-                    };
-                    db.PrescriptionDetails.Add(prescriptionDetails);
-                }
-                db.SaveChanges();
-                return Json(new
-                {
-                    status = "OK"
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new
-                {
-                    status = "ERROR",
-                    message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //            };
+        //            db.PrescriptionDetails.Add(prescriptionDetails);
+        //        }
+        //        db.SaveChanges();
+        //        return Json(new
+        //        {
+        //            status = "OK"
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new
+        //        {
+        //            status = "ERROR",
+        //            message = ex.Message
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
 
 

@@ -20,13 +20,14 @@ namespace QuanLyPhongKham3.Models
             this.Prescription = new HashSet<Prescription>();
         }
     
-        public string ID { get; set; }
+        public string UserId { get; set; }
         public string Name { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string Sex { get; set; }
         public string Address { get; set; }
         public Nullable<System.DateTime> StartDay { get; set; }
         public string Type { get; set; }
+        public int ID { get; set; }
     
         public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

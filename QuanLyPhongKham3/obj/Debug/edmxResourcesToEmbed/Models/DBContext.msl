@@ -56,6 +56,7 @@
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="Sex" ColumnName="Sex" />
           <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -87,6 +88,8 @@
           <ScalarProperty Name="IdStaff" ColumnName="IdStaff" />
           <ScalarProperty Name="IDCustomer" ColumnName="IDCustomer" />
           <ScalarProperty Name="DateOfCreate" ColumnName="DateOfCreate" />
+          <ScalarProperty Name="Symptom" ColumnName="Symptom" />
+          <ScalarProperty Name="Diagnosis" ColumnName="Diagnosis" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -97,9 +100,11 @@
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="IDPrescription" ColumnName="IDPrescription" />
           <ScalarProperty Name="IDMedicine" ColumnName="IDMedicine" />
-          <ScalarProperty Name="Count" ColumnName="Count" />
-          <ScalarProperty Name="Dosage" ColumnName="Dosage" />
-          <ScalarProperty Name="Symptom" ColumnName="Symptom" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Morning" ColumnName="Morning" />
+          <ScalarProperty Name="Noon" ColumnName="Noon" />
+          <ScalarProperty Name="Afternoon" ColumnName="Afternoon" />
+          <ScalarProperty Name="Night" ColumnName="Night" />
           <ScalarProperty Name="Using" ColumnName="Using" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -107,13 +112,14 @@
     <EntitySetMapping Name="Staff">
       <EntityTypeMapping TypeName="QLPKModel.Staff">
         <MappingFragment StoreEntitySet="Staff">
-          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
           <ScalarProperty Name="Sex" ColumnName="Sex" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="StartDay" ColumnName="StartDay" />
           <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
