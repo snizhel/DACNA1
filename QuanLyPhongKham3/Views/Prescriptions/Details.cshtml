@@ -1,94 +1,118 @@
-﻿@model QuanLyPhongKham3.Models.Prescription
+﻿@model QuanLyPhongKham3.Models.PrescriptionDetails
 
 @{
     ViewBag.Title = "Details";
+    QuanLyPhongKham3.Models.Prescription dt = ViewBag.prescription;
 }
 
-<h2>Details</h2>
+
+
+
+<h2>Apply</h2>
 
 <div>
-    <h4>Prescription</h4>
+    <h4>ID: @(dt.ID.ToString("000000"))</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.Label("Ngày lập toa")
+            Date:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateOfCreate)
+            @(dt.DateOfCreate.Value.ToString("dd-MM-yyyy"))
         </dd>
 
         <dt>
-            @Html.Label("Trạng thái")
+            Patient:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Status)
+            @(dt.Customer.Name)
         </dd>
 
         <dt>
-            @Html.Label("Tên bệnh nhân")
+            Doctor:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Customer.Name)
+            @(dt.Staff.Name)
         </dd>
 
         <dt>
-            @Html.Label("Người lập toa")
+            Status:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Staff.Name)
+            @(dt.Status)
         </dd>
-        <div style="padding-left: 50px;padding-right: 10%;padding-top:10px;" class="container">
-            <h2 class="text-center">Đơn thuốc</h2>
-            <table class="table table-dark table-striped table-hover tbl_code_with_mark">
-               
-                <tr>
-                    <th>Tên thuốc</th>
-                    <th>Số lượng</th>
-                    <th>Cách dùng</th>
-                    <th>Liều lượng</th>
 
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayFor(model => model.Medicine.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Count)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.Using)
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(model => model.Dosage)
-                    </td>
-
-
-                </tr>
-
-
-
-            </table>
-            @* <div class="text-center">
-                <span class="btn btn-sm btn-primary btn_row_add_below_end"> Clone Last Row And Add At End</span>
-            </div>*@
-
-
-        </div>
-
+       
 
     </dl>
-
-    
 </div>
+<table class="table">
+    <tr>
+        <th>
+            No
+        </th>
+        <th>
+            Medicine name
+        </th>
+        <th>
+            Unit
+        </th>
+        <th class="text-right">
+            Quantity
+        </th>
+        <th class="text-right">
+            Morning
+        </th>
+        <th class="text-right">
+            Afternoon
+        </th>
+        <th class="text-right">
+            Noon
+        </th>
+        <th class="text-right">
+            Night
+        </th>
+        <th>
+            Usage
+        </th>
+    </tr>
 
-
-<p>
-    @*@Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.ID }) |*@
-
-    @Html.ActionLink("Quay lại danh sách toa thuốc", "Index")
-</p>
+    @foreach (var item in dt.PrescriptionDetails.Select((x, i) => new { Data = x, Index = i }))
+    {
+        <tr>
+            <td>
+                @(item.Index + 1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Medicine.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Medicine.Unit)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Data.Quantity)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Data.Morning)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Data.Noon)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Data.Afternoon)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Data.Night)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data.Using)
+            </td>
+        </tr>
+    }
+   
+    }
+</table>

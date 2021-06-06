@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-           Patient:
+            Patient:
         </dt>
 
         <dd>
@@ -42,6 +42,7 @@
         <dd>
             @(dt.Status)
         </dd>
+       
 
     </dl>
 </div>
@@ -57,7 +58,7 @@
             Unit
         </th>
         <th class="text-right">
-           Quantity
+            Quantity
         </th>
         <th class="text-right">
             Morning
@@ -66,7 +67,7 @@
             Afternoon
         </th>
         <th class="text-right">
-            Noon    
+            Noon
         </th>
         <th class="text-right">
             Night
@@ -114,7 +115,7 @@
         <tr>
             <td colspan="3">
                 @Html.HiddenFor(model => model.IDPrescription, new { Value = dt.ID })
-                @Html.DropDownList("MedicineId", null, htmlAttributes: new { @class = "form-control", style = "width: 300px;" })
+                @Html.DropDownList("IDMedicine", null, htmlAttributes: new { @class = "form-control", style = "width: 300px;" })
             </td>
             <td>
                 @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @Value = "0", @class = "form-control", style = "width: 100%;" } })
@@ -139,10 +140,11 @@
             <td colspan="9" class="text-right">
                 <input type="submit" value="Add" class="btn btn-info" />
 
-                <a href="@Url.Action("Index")" class="btn btn-info">
-                    List of Patients
+                <a href="@Url.Action("Details","Prescriptions")" class="btn btn-info">
+                    Transfer
                 </a>
             </td>
         </tr>
     }
 </table>
+

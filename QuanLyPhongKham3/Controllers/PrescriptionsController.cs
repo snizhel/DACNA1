@@ -68,7 +68,7 @@ namespace QuanLyPhongKham3.Controllers
                 return HttpNotFound();
             }
             var medicines = db.Medicine.Select(x => new { Id = x.ID, Name = x.Name + " (" + x.Unit + ")" });
-            ViewBag.MedicineId = new SelectList(medicines, "Id", "Name");
+            ViewBag.IDMedicine = new SelectList(medicines, "Id", "Name");
             ViewBag.prescription = prescription;
             return View();
         }
@@ -94,13 +94,28 @@ namespace QuanLyPhongKham3.Controllers
 
 
         // GET: Prescriptions/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? pres_id)
         {
-            if (id == null)
+            if (pres_id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Prescription prescription = db.Prescription.Find(id);
+            Prescription prescription = db.Prescription.Find(pres_id);
+            //try
+            //{
+            //    return Json(new
+            //    {
+            //        status = "OK"
+            //    }, JsonRequestBehavior.AllowGet);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Json(new
+            //    {
+            //        status = "ERROR",
+            //        message = ex.Message
+            //    }, JsonRequestBehavior.AllowGet);
+            //}
             if (prescription == null)
             {
                 return HttpNotFound();
