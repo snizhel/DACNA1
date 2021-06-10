@@ -17,7 +17,7 @@ namespace QuanLyPhongKham3.Controllers
         // GET: MedicineKeeper
         public ActionResult Index()
         {
-            var prescription = db.Prescription.Where(x=>x.Status=="Unpaid");
+            var prescription = db.Prescription.Where(x=>x.Status=="Unpaid" );
             return View(prescription.ToList());
         }
 
@@ -41,24 +41,13 @@ namespace QuanLyPhongKham3.Controllers
         public ActionResult Checkout(int? pres_id)
         {
             Prescription prescription = db.Prescription.Find(pres_id);
-            try
             {
                 prescription.Status = "Close";
                 db.Entry(prescription).State = EntityState.Modified;
                 db.SaveChanges();
-                return Json(new
-                {
-                    status = "OK",
-                }, JsonRequestBehavior.AllowGet);
+                return RedirectToAction("Index");
             }
-            catch (Exception ex)
-            {
-                return Json(new
-                {
-                    status = "ERROR",
-                    message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
+            
         }
 
         // GET: MedicineKeeper/Create
