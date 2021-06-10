@@ -45,40 +45,7 @@ namespace QuanLyPhongKham3.Controllers
 
 
         }
-        //public ActionResult CheckScript( int pres_id)
-        //{
-        //    Prescription prescription = db.Prescription.Find(pres_id);
-        //    try
-        //    {
-
-        //        foreach (var item in items)
-        //        {
-        //            Medicine medicine = db.Medicine.Find(item.ID);
-        //            ViewBag.IdMedicine = new SelectList(db.Medicine, "ID", "Name");
-        //            PrescriptionDetails prescriptionDetails = new PrescriptionDetails
-        //            {
-        //                IDPrescription = prescription.ID,
-        //                IDMedicine = medicine.ID,
-
-
-        //            };
-        //            db.PrescriptionDetails.Add(prescriptionDetails);
-        //        }
-        //        db.SaveChanges();
-        //        return Json(new
-        //        {
-        //            status = "OK"
-        //        }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new
-        //        {
-        //            status = "ERROR",
-        //            message = ex.Message
-        //        }, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
+        
 
 
 

@@ -477,8 +477,6 @@
     <Content Include="Views\Prescriptions\Edit.cshtml" />
     <Content Include="Views\Prescriptions\Index.cshtml" />
     <Content Include="Views\Account\RegisterEmployee.cshtml" />
-    <Content Include="Views\DoctorCards\Index.cshtml" />
-    <Content Include="Views\DoctorCards\CheckScript.cshtml" />
     <Content Include="Views\Prescriptions\Apply.cshtml" />
     <Content Include="Views\Prescriptions\Transfer.cshtml" />
     <Content Include="Views\MedicineKeeper\Create.cshtml" />
@@ -489,6 +487,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\DoctorCards\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

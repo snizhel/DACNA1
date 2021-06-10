@@ -10,7 +10,7 @@ using QuanLyPhongKham3.Models;
 using PagedList;//Must install
 namespace QuanLyPhongKham3.Controllers
 {
-    [Authorize(Roles ="MedicalStaff,Admin")]
+    [Authorize(Roles ="Dispenser,Admin")]
     public class MedicinesController : Controller
     {
         private QLPKEntities db = new QLPKEntities();
