@@ -37,6 +37,30 @@ namespace QuanLyPhongKham3.Controllers
             return View(prescription);
         }
 
+
+        public ActionResult Checkout(int? pres_id)
+        {
+            Prescription prescription = db.Prescription.Find(pres_id);
+            try
+            {
+                prescription.Status = "Close";
+                db.Entry(prescription).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(new
+                {
+                    status = "OK",
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    status = "ERROR",
+                    message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         // GET: MedicineKeeper/Create
         public ActionResult Create()
         {

@@ -50,7 +50,7 @@
             @Html.DisplayFor(model => model.Customer.Name)
         </dd>
 
-        
+
 
     </dl>
     <table class="table">
@@ -118,8 +118,47 @@
             </tr>
         }
     </table>
+
 </div>
 <p>
-   
+
+
     @Html.ActionLink("Back", "Index")
+    <button style="color: #fff; background: #1abc9c;margin-left:85%;border-radius:10px" class="primary" data-id="@Model.ID">Pay Now</button>
 </p>
+@section Scripts{
+    <script language="javascript">
+        $(".primary").click(function () {
+            var tr = $(this).closest("tr");
+            var pres_id = $(this).data("id");
+            $.ajax({
+                url: '/MedicineKeeper/Checkout',
+                method: 'GET',
+                async: true,
+                cache: false,
+                data: {
+                    pres_id: pres_id,
+                },
+                beforeSend: function () {
+                    alert("Please wait...");
+                }
+            }).done(function (result) {
+                if (result.status == "OK") {
+                    alert("Success!");
+                    tr.remove();
+                }
+                else if (result.status == "ER") {
+                    //$("#fb").html(result.data);
+                    alert("Error!", "Error!", result.data);
+                }
+
+            }).fail(function (xhr, status) {
+                //$("#fb").html(status);
+                alert("failed", "Error!", status);
+            }).always(function () {
+                //$("#fb").html("");
+            })
+        })
+    </script>
+
+}
