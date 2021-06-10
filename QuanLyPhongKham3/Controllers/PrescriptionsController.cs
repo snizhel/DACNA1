@@ -91,7 +91,7 @@ namespace QuanLyPhongKham3.Controllers
             return View();
         }
 
-
+       
 
         // GET: Prescriptions/Details/5
         public ActionResult Details(int? pres_id)

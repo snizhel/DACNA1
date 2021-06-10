@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -14,31 +15,20 @@ namespace QuanLyPhongKham3.Controllers
         public ActionResult Index()
         {
             Response.AddHeader("Refresh", "5");
-            return View(db.Prescription.Where(x => x.Status == "New" && x.DateOfCreate == DateTime.Today).ToList());
+            return View();
         }
 
-        //[ValidateAntiForgeryToken]
-        // [HttpPost]
-        public ActionResult Add(int patient_id, int doctor_id)
+        public ActionResult Transfer(int? detail_id, int? pres_id)
         {
-            Customer customer = db.Customer.Find(patient_id);
-
-            Prescription prescription = new Prescription
-            {
-                IDCustomer = patient_id,
-                IdStaff = doctor_id,
-                Status = "New",
-                DateOfCreate = DateTime.Today,
-
-
-            };
+            Prescription prescription = db.Prescription.Find(pres_id);
             try
             {
-                db.Prescription.Add(prescription);
+                prescription.Status = "Unpaid";
+                db.Entry(prescription).State = EntityState.Modified;
                 db.SaveChanges();
                 return Json(new
                 {
-                    status = "OK"
+                    status = "OK",
                 }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -49,18 +39,18 @@ namespace QuanLyPhongKham3.Controllers
                     message = ex.Message
                 }, JsonRequestBehavior.AllowGet);
             }
-            ////   ViewBag.Staff = new SelectList(db.AspNetRoles.Where(role => role.Name.Contains("Doctor")).ToList(), "Name", "Name", "Employee");
-            //     DoctorCart cart = DoctorCart.getInstance();
-            //     cart.Add(item);
-            //     //return View(DoctorCart.getInstance().List.Values);
-        }
 
+
+
+
+
+        }
         //public ActionResult CheckScript( int pres_id)
         //{
         //    Prescription prescription = db.Prescription.Find(pres_id);
         //    try
         //    {
-                
+
         //        foreach (var item in items)
         //        {
         //            Medicine medicine = db.Medicine.Find(item.ID);
@@ -69,7 +59,7 @@ namespace QuanLyPhongKham3.Controllers
         //            {
         //                IDPrescription = prescription.ID,
         //                IDMedicine = medicine.ID,
-                       
+
 
         //            };
         //            db.PrescriptionDetails.Add(prescriptionDetails);

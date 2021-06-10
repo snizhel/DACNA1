@@ -64,7 +64,6 @@ C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\obj\Debug\Qu
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\obj\Debug\QuanLyPhongKham3.csproj.CopyComplete
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\obj\Debug\QuanLyPhongKham3.dll
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\obj\Debug\QuanLyPhongKham3.pdb
-C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\obj\Debug\QuanLyPhongKham3.csprojAssemblyReference.cache
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\roslyn\csc.exe.config
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\roslyn\csc.rsp
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\roslyn\csi.exe
@@ -183,3 +182,4 @@ C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\System.T
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\System.Text.Json.xml
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\System.Threading.Tasks.Extensions.xml
 C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\bin\System.ValueTuple.xml
+C:\Users\le gia vinh\source\repos\QuanLyPhongKham3\QuanLyPhongKham3\obj\Debug\QuanLyPhongKham3.csprojAssemblyReference.cache

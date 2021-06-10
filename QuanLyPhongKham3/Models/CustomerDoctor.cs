@@ -9,14 +9,14 @@ namespace QuanLyPhongKham3.Models
     public class CustomerDoctor
     {
         public int ID { get; set; }
-        public string Name { get; set; }
+        public int IdStaff { get; set; }
+        public int IDCustomer { get; set; }
         [DataType(DataType.Date)]
-        public DateTime DateOfBirth { get; set; }
-        public string Address { get; set; }
-        public int PhoneNumber { get; set; }
-        public string Sex { get; set; }
-        public string Email { get; set; }
-        public int Turn { get; set; }
-       
+        public DateTime DateOfCreate { get; set; }
+        public string Symptom { get; set; }
+        public string Diagnosis { get; set; }
+        public string Status { get; set; }
+
+      
     }
 }

@@ -11,7 +11,8 @@ namespace QuanLyPhongKham3.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Prescription
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +24,8 @@ namespace QuanLyPhongKham3.Models
         public int ID { get; set; }
         public int IdStaff { get; set; }
         public int IDCustomer { get; set; }
-        public Nullable<System.DateTime> DateOfCreate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime DateOfCreate { get; set; }
         public string Symptom { get; set; }
         public string Diagnosis { get; set; }
         public string Status { get; set; }

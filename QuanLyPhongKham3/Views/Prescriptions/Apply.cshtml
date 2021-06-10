@@ -16,7 +16,7 @@
         </dt>
 
         <dd>
-            @(dt.DateOfCreate.Value.ToString("dd-MM-yyyy"))
+            @(dt.DateOfCreate.ToString("dd-MM-yyyy"))
         </dd>
 
         <dt>
@@ -42,7 +42,7 @@
         <dd>
             @(dt.Status)
         </dd>
-       
+
 
     </dl>
 </div>
@@ -107,6 +107,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Data.Using)
             </td>
+            
         </tr>
     }
     @using (Html.BeginForm())
@@ -139,12 +140,51 @@
         <tr>
             <td colspan="9" class="text-right">
                 <input type="submit" value="Add" class="btn btn-info" />
-
-                <a href="@Url.Action("Details","Prescriptions")" class="btn btn-info">
-                    Transfer
-                </a>
+            </td>
+            <td type="button" class="add-to-cart" data-id="@dt.ID">
+                <span class="glyphicon" style="color:red">Transfer</span>
             </td>
         </tr>
     }
 </table>
+@section Scripts{
+    <script language="javascript">
+        $(".add-to-cart").click(function () {
+            var tr = $(this).closest("tr");
+            var pres_id = $(this).data("id");
+           
+            alert(pres_id)
+            $.ajax({
+                url: '/DoctorCards/Transfer',
+                method: 'GET',
+                async: true,
+                cache: false,
+                data: {
+                    pres_id: pres_id,
+                  
 
+
+                },
+                beforeSend: function () {
+                    alert("Please wait...");
+                }
+            }).done(function (result) {
+                if (result.status == "OK") {
+                    alert("Success!");
+                    tr.remove();
+                }
+                else if (result.status == "ER") {
+                    //$("#fb").html(result.data);
+                    alert("Error!", "Error!", result.data);
+                }
+
+            }).fail(function (xhr, status) {
+                //$("#fb").html(status);
+                alert("failed", "Error!", status);
+            }).always(function () {
+                //$("#fb").html("");
+            })
+        })
+    </script>
+
+}

@@ -301,6 +301,7 @@
     <Compile Include="Controllers\DoctorCardsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedicineKeeperController.cs" />
     <Compile Include="Controllers\MedicinesController.cs" />
     <Compile Include="Controllers\MedicineTypesController.cs" />
     <Compile Include="Controllers\PrescriptionsController.cs" />
@@ -479,6 +480,12 @@
     <Content Include="Views\DoctorCards\Index.cshtml" />
     <Content Include="Views\DoctorCards\CheckScript.cshtml" />
     <Content Include="Views\Prescriptions\Apply.cshtml" />
+    <Content Include="Views\Prescriptions\Transfer.cshtml" />
+    <Content Include="Views\MedicineKeeper\Create.cshtml" />
+    <Content Include="Views\MedicineKeeper\Delete.cshtml" />
+    <Content Include="Views\MedicineKeeper\Details.cshtml" />
+    <Content Include="Views\MedicineKeeper\Edit.cshtml" />
+    <Content Include="Views\MedicineKeeper\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
