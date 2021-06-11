@@ -142,8 +142,9 @@
                 <input type="submit" value="Add" class="btn btn-info" />
             </td>
             <td type="button" class="add-to-cart" data-id="@dt.ID">
-                <span class="glyphicon" style="color:red">Transfer</span>
+                <button style="color: #fff; background-color:#5bc0de;border-color:#46b8da ;border-radius:5px;height:33px" >Transfer</button>
             </td>
+          
         </tr>
     }
 </table>
@@ -152,16 +153,15 @@
         $(".add-to-cart").click(function () {
             var tr = $(this).closest("tr");
             var pres_id = $(this).data("id");
-           
-            alert(pres_id)
+
             $.ajax({
-                url: '/DoctorCards/Transfer',
+                url: '/Prescriptions/Transfer',
                 method: 'GET',
                 async: true,
                 cache: false,
                 data: {
                     pres_id: pres_id,
-                  
+
 
 
                 },
@@ -171,6 +171,7 @@
             }).done(function (result) {
                 if (result.status == "OK") {
                     alert("Success!");
+                    window.location.href = '@Url.Action("Index", "Prescriptions")'
                     tr.remove();
                 }
                 else if (result.status == "ER") {

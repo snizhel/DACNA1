@@ -83,8 +83,8 @@
                     @Html.DropDownList("IdStaff" + item.ID, (SelectList)ViewBag.IdStaff, htmlAttributes: new { @class = "form-control" })
 
                 </td>
-                <td type="button" class="add-to-cart" title="Add to Cart" data-id="@item.ID">
-                    <span class="glyphicon" style="color:red">Transfer</span>
+                <td style="border-radius: 5px; border: solid;background-color:white" type="button" class="add-to-cart" title="Add to Cart" data-id="@item.ID">
+                    <span class="glyphicon" style="color: black; ">Transfer</span>
                 </td>
                 @if (this.User.IsInRole("Doctor"))
                 {
@@ -120,7 +120,7 @@
             var tr = $(this).closest("tr");
             var item_id = $(this).data("id");
             var doctor_id = $("#IdStaff" + item_id).val()
-            alert(doctor_id)
+            /*alert(doctor_id)*/
             $.ajax({
                 url: '/Prescriptions/Add',
                 method: 'GET',

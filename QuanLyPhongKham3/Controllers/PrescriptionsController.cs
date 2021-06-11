@@ -11,10 +11,11 @@ using QuanLyPhongKham3.Models;
 
 namespace QuanLyPhongKham3.Controllers
 {
+    [Authorize(Roles = "Admin,Doctor")]
     public class PrescriptionsController : Controller
     {
         private QLPKEntities db = new QLPKEntities();
-        
+
         // GET: Prescriptions
         public ActionResult Index()
         {
@@ -75,9 +76,9 @@ namespace QuanLyPhongKham3.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  ActionResult Apply([Bind(Include = "IDPrescription,IDMedicine,Quantity,Morning,Noon,Afternoon,Night,Using")] PrescriptionDetails detail)
+        public ActionResult Apply([Bind(Include = "IDPrescription,IDMedicine,Quantity,Morning,Noon,Afternoon,Night,Using")] PrescriptionDetails detail)
         {
-            
+
             if (ModelState.IsValid)
             {
                 db.PrescriptionDetails.Add(detail);
@@ -91,7 +92,33 @@ namespace QuanLyPhongKham3.Controllers
             return View();
         }
 
-       
+        public ActionResult Transfer(int? detail_id, int? pres_id)
+        {
+            Prescription prescription = db.Prescription.Find(pres_id);
+            try
+            {
+                prescription.Status = "Unpaid";
+                db.Entry(prescription).State = EntityState.Modified;
+                db.SaveChanges();
+                return Json(new
+                {
+                    
+                    status = "OK",
+                }, JsonRequestBehavior.AllowGet);
+                
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    status = "ERROR",
+                    message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
 
         // GET: Prescriptions/Details/5
         public ActionResult Details(int? pres_id)
