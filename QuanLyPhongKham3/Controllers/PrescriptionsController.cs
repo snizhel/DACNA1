@@ -19,8 +19,10 @@ namespace QuanLyPhongKham3.Controllers
         // GET: Prescriptions
         public ActionResult Index()
         {
+            string useid =this.User.Identity.GetUserId();
+            Staff doctor=db.Staff.Where(x => x.UserId == useid).FirstOrDefault();
             Response.AddHeader("Refresh", "5");
-            return View(db.Prescription.Where(x => x.Status == "New" && x.DateOfCreate == DateTime.Today).ToList());
+            return View(db.Prescription.Where(x => x.Status == "New" && x.DateOfCreate == DateTime.Today && x.IdStaff==doctor.ID).ToList());
         }
 
         public ActionResult Add(int patient_id, int doctor_id)

@@ -14,7 +14,7 @@
         @Html.RadioButton("searchBy", "Name", true) <text>Name</text>
         @Html.RadioButton("searchBy", "Gender") <text>Gender</text>
         <br />
-        @Html.TextBox("search") <input type="submit" value="search" />
+        @Html.Editor("search", new { htmlAttributes = new { @class = "", placeholder = "Please enter patient name" } }) <input type="submit" value="search" />
     }
 
     <p>
@@ -115,6 +115,10 @@
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchBy = Request.QueryString["searchBy"], search = Request.QueryString["search"], sortBy = Request["sortBy"] }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true })
 </div>
 @section Scripts{
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/sweetalert.js"></script>
     <script language="javascript">
         $(".add-to-cart").click(function () {
             var tr = $(this).closest("tr");
@@ -132,16 +136,16 @@
 
                 },
                 beforeSend: function () {
-                    alert("Adding the patient to doctor. Please wait...");
+                    swal("Waiting!", "...the patient is adding!");
                 }
             }).done(function (result) {
                 if (result.status == "OK") {
-                    alert("Success!", "Success!", "Adding the patient to doctor successfully.");
+                    swal("Good job!", 'success', "success");
                     tr.remove();
                 }
                 else if (result.status == "ER") {
                     //$("#fb").html(result.data);
-                    alert("Error!", "Error!", result.data);
+                    swal("Error!", "Error!", result.data);
                 }
 
             }).fail(function (xhr, status) {

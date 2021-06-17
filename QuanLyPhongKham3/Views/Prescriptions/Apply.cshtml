@@ -107,7 +107,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Data.Using)
             </td>
-            
+
         </tr>
     }
     @using (Html.BeginForm())
@@ -142,13 +142,18 @@
                 <input type="submit" value="Add" class="btn btn-info" />
             </td>
             <td type="button" class="add-to-cart" data-id="@dt.ID">
-                <button style="color: #fff; background-color:#5bc0de;border-color:#46b8da ;border-radius:5px;height:33px" >Transfer</button>
+                <button style="color: #fff; background-color:#5bc0de;border-color:#46b8da ;border-radius:5px;height:33px">Transfer</button>
             </td>
-          
+
         </tr>
     }
 </table>
 @section Scripts{
+    <script src="https://lipis.github.io/bootstrap-sweetalert/lib/sweet-alert.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="~/Scripts/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/sweetalert.js"></script>
     <script language="javascript">
         $(".add-to-cart").click(function () {
             var tr = $(this).closest("tr");
@@ -166,11 +171,11 @@
 
                 },
                 beforeSend: function () {
-                    alert("Please wait...");
+                    swal("Please wait...");
                 }
             }).done(function (result) {
                 if (result.status == "OK") {
-                    alert("Success!");
+                    swal("Success!");
                     window.location.href = '@Url.Action("Index", "Prescriptions")'
                     tr.remove();
                 }
@@ -181,7 +186,7 @@
 
             }).fail(function (xhr, status) {
                 //$("#fb").html(status);
-                alert("failed", "Error!", status);
+                swal("failed", "Error!", status);
             }).always(function () {
                 //$("#fb").html("");
             })

@@ -67,9 +67,9 @@
                     @Html.DisplayFor(modelItem => item.MedicineType.Name)
                 </td>
                 <td>
-                    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Thông tin thuốc", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Xóa", "Delete", new { id = item.ID })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Detail", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
                 </td>
             </tr>
         }

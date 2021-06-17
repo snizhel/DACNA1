@@ -6,12 +6,12 @@
 
 
 
-<h3>Bạn có chắc muốn xóa thuốc này?</h3>
+
 <div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.Label("Tên thuốc")
+            @Html.Label("Medicine Name")
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.Label("Đơn vị tính")
+            @Html.Label("Unit")
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.Label("Số lượng")
+            @Html.Label("Number")
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.Label("Giá thu vào")
+            @Html.Label("Cost")
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.Label("Giá bán ra")
+            @Html.Label("Price")
         </dt>
 
         <dd>
@@ -51,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.Label("Loại thuốc")
+            @Html.Label("Medicine Type")
         </dt>
 
         <dd>
@@ -60,13 +60,14 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input style="margin-left:12%" type="submit" value="Xóa" class="btn btn-default" /> 
+            <input style="margin-left:12%" type="submit" value="Delete" class="btn btn-default" />
             <br>
-            @Html.ActionLink("Quay lại danh sách thuốc", "Index")
+            @Html.ActionLink("Black", "Index")
         </div>
     }
 </div>
