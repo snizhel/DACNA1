@@ -13,7 +13,7 @@
     @Html.RadioButton("searchBy", "Name", true) <text>Name</text>
     @Html.RadioButton("searchBy", "Unit") <text>Unit</text>
     <br />
-    @Html.TextBox("search")
+    @Html.Editor("search", new { htmlAttributes = new { @class = "", placeholder = "Please enter medicine name" } })
     <input type="submit" value="search" />
 }
 
